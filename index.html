@@ -19,6 +19,13 @@
         .accordion-content.active { max-height:2000px; }
         .bloque-card { border-left:4px solid #3b82f6; }
         .alert-warning { background:#fef3c7; border-left:4px solid #f59e0b; }
+        .alert-danger { background:#fee2e2; border-left:4px solid #ef4444; }
+        .alert-success { background:#dcfce7; border-left:4px solid #16a34a; }
+        .asueto-item { transition: all 0.2s; }
+        .asueto-item:hover { background: #f0f9ff; }
+        .asueto-item input:checked + label { background: #dbeafe; border-color: #3b82f6; color: #1e3a8a; font-weight: 600; }
+        .asueto-item input:checked + label .check-icon { display: inline-block; }
+        .check-icon { display: none; }
 
         /* STREAMING_CHUNK:Estilos de impresión PDF */
         @media print {
@@ -43,8 +50,6 @@
             #pdfReport .pdf-signature { display: inline-block; width: 45%; margin-top: 40px; border-top: 1px solid #333; padding-top: 5px; text-align: center; }
             #pdfReport .pdf-warning { background: #fff7ed; border: 1px solid #f59e0b; padding: 10px; font-size: 9px; border-radius: 4px; }
         }
-
-        /* Vista previa en pantalla del PDF */
         .pdf-preview {
             background: white; border: 1px solid #ddd; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             max-width: 800px; margin: 0 auto; padding: 40px; font-family: 'Segoe UI', Arial, sans-serif;
@@ -80,15 +85,15 @@
 
             <form id="formPrestaciones" class="space-y-8">
 
-                <!-- BLOQUE 0: Datos de las partes (para el PDF) -->
+                <!-- BLOQUE 0: Datos de las partes -->
                 <div class="bloque-card bg-indigo-50 rounded-lg p-5" style="border-left-color:#4f46e5;">
                     <h3 class="text-lg font-bold text-indigo-900 mb-4 flex items-center">
                         <span class="bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3">0</span>
-                        Datos de las Partes (para Comprobante PDF)
+                        Datos de las Partes
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre completo del trabajador(a)</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre completo del trabajador(a) *</label>
                             <input type="text" id="nombreTrabajador" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                                 placeholder="Ej: Juan Alberto Pérez López">
@@ -100,30 +105,65 @@
                                 placeholder="00000000-0">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre del Patrono / Empresa</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre del Patrono / Empresa *</label>
                             <input type="text" id="nombrePatrono" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                                 placeholder="Ej: Orion Software S.A. de C.V.">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Cargo desempeñado</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Cargo desempeñado *</label>
                             <input type="text" id="cargoTrabajador" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                                 placeholder="Ej: Ingeniero de Software">
                         </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">
+                                <i class="fas fa-map-marker-alt text-indigo-600 mr-1"></i>
+                                Departamento donde labora (para asuetos locales)
+                            </label>
+                            <select id="departamento"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500">
+                                <option value="nacional">Nacional (solo asuetos generales)</option>
+                                <option value="san_salvador">San Salvador (3 y 5 agosto)</option>
+                                <option value="san_miguel">San Miguel (21 noviembre)</option>
+                                <option value="ambos">Ambos (San Salvador + San Miguel)</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <!-- BLOQUE 1: Datos financieros y antigüedad -->
+                <!-- BLOQUE 1: Fechas, salario y antigüedad -->
                 <div class="bloque-card bg-blue-50 rounded-lg p-5">
                     <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center">
                         <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3">1</span>
-                        Datos Financieros y Antigüedad
+                        Fechas, Salario y Antigüedad
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                <i class="fas fa-dollar-sign text-green-600 mr-1"></i> Salario Mensual (USD)
+                                <i class="fas fa-calendar-plus text-blue-600 mr-1"></i> Fecha de Ingreso *
+                            </label>
+                            <input type="date" id="fechaIngreso" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-calendar-check text-blue-600 mr-1"></i> Fecha de Terminación *
+                            </label>
+                            <input type="date" id="fechaTerminacion" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-info-circle text-blue-600 mr-1"></i> Antigüedad Calculada
+                            </label>
+                            <div id="antiguedadCalculada" class="w-full px-4 py-3 border border-gray-200 bg-gray-100 rounded-lg text-gray-700 font-semibold">
+                                Ingrese las fechas
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-dollar-sign text-green-600 mr-1"></i> Salario Mensual (USD) *
                             </label>
                             <input type="number" id="salarioMensual" step="0.01" min="0" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
@@ -131,42 +171,22 @@
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                <i class="fas fa-calendar text-blue-600 mr-1"></i> Años Laborados
-                            </label>
-                            <input type="number" id="anosLaborados" min="0" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                placeholder="Ej: 5">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                <i class="fas fa-calendar-day text-blue-600 mr-1"></i> Meses Laborados (0-11)
-                            </label>
-                            <input type="number" id="mesesLaborados" min="0" max="11" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                                placeholder="Ej: 7">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                <i class="fas fa-calendar-plus text-blue-600 mr-1"></i> Fecha de Ingreso
-                            </label>
-                            <input type="date" id="fechaIngreso" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                <i class="fas fa-calendar-check text-blue-600 mr-1"></i> Fecha de Terminación
-                            </label>
-                            <input type="date" id="fechaTerminacion" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
                                 <i class="fas fa-coins text-yellow-600 mr-1"></i> Salario Mínimo Legal (USD)
                             </label>
-                            <input type="number" id="salarioMinimo" step="0.01" min="0" required value="365.00"
+                            <input type="number" id="salarioMinimo" step="0.01" min="0" required value="408.80"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                            <p class="text-xs text-gray-500 mt-1"><i class="fas fa-info-circle mr-1"></i>Tope indemnización = 4× SML</p>
+                            <p class="text-xs text-gray-500 mt-1"><i class="fas fa-info-circle mr-1"></i>Valor vigente 2026. Tope indemnización = 4× SML</p>
                         </div>
+                    </div>
+
+                    <!-- Alerta de validación renuncia -->
+                    <div id="alertRenuncia" class="hidden alert-danger p-3 rounded mt-4 text-sm text-red-900">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <strong>No aplica Renuncia Voluntaria:</strong> La prestación económica por renuncia voluntaria requiere mínimo <strong>2 años de servicio continuo</strong>. La antigüedad actual es menor.
+                    </div>
+                    <div id="alertRenunciaOk" class="hidden alert-success p-3 rounded mt-4 text-sm text-green-900">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <strong>Sí aplica Renuncia Voluntaria:</strong> El trabajador cuenta con 2 o más años de servicio continuo.
                     </div>
                 </div>
 
@@ -184,17 +204,13 @@
                                 <p class="text-xs text-gray-600 mt-1">Art. 58 CT · 30 días por año + fracción proporcional</p>
                             </div>
                         </label>
-                        <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-500 transition-colors">
+                        <label id="labelRenuncia" class="flex items-start p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-500 transition-colors">
                             <input type="radio" name="causaTerminacion" value="renuncia" class="mt-1 mr-3">
                             <div>
                                 <p class="font-semibold text-gray-800"><i class="fas fa-hand-holding-usd text-green-600 mr-2"></i>Renuncia Voluntaria</p>
                                 <p class="text-xs text-gray-600 mt-1">Ley 2014 · 15 días por año · <strong class="text-red-600">Mínimo 2 años de servicio</strong></p>
                             </div>
                         </label>
-                    </div>
-                    <div id="alertRenuncia" class="hidden alert-warning p-3 rounded mt-3 text-sm text-yellow-900">
-                        <i class="fas fa-exclamation-triangle mr-2"></i>
-                        <strong>Atención:</strong> La prestación económica por renuncia voluntaria requiere mínimo 2 años de servicio continuo.
                     </div>
                 </div>
 
@@ -225,37 +241,57 @@
                     </div>
                 </div>
 
-                <!-- BLOQUE 4: Jornadas extraordinarias -->
+                <!-- BLOQUE 4: Jornadas extraordinarias del ÚLTIMO MES -->
                 <div class="bloque-card bg-orange-50 rounded-lg p-5" style="border-left-color:#f97316;">
-                    <h3 class="text-lg font-bold text-orange-900 mb-4 flex items-center">
+                    <h3 class="text-lg font-bold text-orange-900 mb-2 flex items-center">
                         <span class="bg-orange-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm mr-3">4</span>
-                        Jornadas Extraordinarias y Días Especiales (Acumulados)
+                        Jornadas Extraordinarias y Asuetos del <span class="ml-1 bg-orange-600 text-white px-2 py-0.5 rounded text-xs">ÚLTIMO MES TRABAJADO</span>
                     </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <p class="text-sm text-gray-600 mb-4">
+                        <i class="fas fa-info-circle text-orange-500 mr-1"></i>
+                        Registre únicamente las horas extras y días de asueto laborados durante el <strong>último mes</strong> previo a la terminación.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2"><i class="fas fa-sun text-yellow-500 mr-1"></i>Horas Extras Diurnas</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-sun text-yellow-500 mr-1"></i> Horas Extras Diurnas
+                            </label>
                             <input type="number" id="horasExtrasDiurnas" min="0" value="0"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
                             <p class="text-xs text-gray-500 mt-1">Recargo 100% · Art. 169 CT</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2"><i class="fas fa-moon text-indigo-500 mr-1"></i>Horas Extras Nocturnas</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-moon text-indigo-500 mr-1"></i> Horas Extras Nocturnas
+                            </label>
                             <input type="number" id="horasExtrasNocturnas" min="0" value="0"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
-                            <p class="text-xs text-gray-500 mt-1">Recargo 100% + 25% · Arts. 168-169</p>
+                            <p class="text-xs text-gray-500 mt-1">Recargo 100% + 25% nocturno · Arts. 168-169 CT</p>
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2"><i class="fas fa-flag text-red-500 mr-1"></i>Días de Asueto Laborados</label>
-                            <input type="number" id="diasAsueto" min="0" value="0"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
-                            <p class="text-xs text-gray-500 mt-1">Recargo 100% · Art. 192 CT</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-flag text-red-500 mr-1"></i> Días de Asueto Laborados en el último mes
+                        </label>
+                        <p class="text-xs text-gray-600 mb-3">Marque únicamente los días de asueto que el trabajador efectivamente laboró durante su último mes:</p>
+                        <div id="listaAsuetos" class="grid grid-cols-1 md:grid-cols-2 gap-2 border border-gray-200 rounded-lg p-3 bg-white max-h-80 overflow-y-auto">
+                            <!-- Se llena dinámicamente -->
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2"><i class="fas fa-calendar-week text-blue-500 mr-1"></i>Días Descanso Semanal</label>
-                            <input type="number" id="diasDescansoSemanal" min="0" value="0"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
-                            <p class="text-xs text-gray-500 mt-1">Recargo 50% · Arts. 175-176 CT</p>
-                        </div>
+                        <p class="text-xs text-gray-500 mt-2">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            <strong>Total días marcados:</strong> <span id="totalAsuetosMarcados" class="font-bold text-orange-700">0</span>
+                        </p>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-calendar-week text-blue-500 mr-1"></i> Días de Descanso Semanal Laborados (último mes)
+                        </label>
+                        <input type="number" id="diasDescansoSemanal" min="0" value="0"
+                            class="w-full md:w-1/3 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
+                        <p class="text-xs text-gray-500 mt-1">Recargo 50% · Arts. 175 y 176 CT</p>
                     </div>
                 </div>
 
@@ -343,19 +379,14 @@
             </div>
         </div>
 
-        <!-- ============================================================ -->
-        <!-- STREAMING_CHUNK:REPORTE PDF (oculto en pantalla, visible al imprimir) -->
-        <!-- ============================================================ -->
-        <div id="pdfReport" style="display:none;">
-            <!-- Se llena dinámicamente con JavaScript -->
-        </div>
+        <!-- STREAMING_CHUNK:REPORTE PDF -->
+        <div id="pdfReport" style="display:none;"></div>
 
-        <!-- Vista previa del PDF en pantalla -->
+        <!-- Vista previa del PDF -->
         <div id="pdfPreviewContainer" class="hidden no-print mb-8">
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-2xl font-bold text-gray-800 flex items-center">
-                    <i class="fas fa-file-pdf text-red-600 mr-3"></i>
-                    Vista Previa del Comprobante PDF
+                    <i class="fas fa-file-pdf text-red-600 mr-3"></i>Vista Previa del Comprobante PDF
                 </h2>
                 <div class="flex gap-3">
                     <button onclick="imprimirPDF()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-5 rounded-lg transition-all">
@@ -371,7 +402,7 @@
             </div>
             <p class="text-center text-sm text-gray-500 mt-3">
                 <i class="fas fa-info-circle mr-1"></i>
-                Haz clic en <strong>"Imprimir / Guardar como PDF"</strong> y en el diálogo de impresión selecciona <strong>"Guardar como PDF"</strong> como destino.
+                Haz clic en <strong>"Imprimir / Guardar como PDF"</strong> y en el diálogo selecciona <strong>"Guardar como PDF"</strong> como destino.
             </p>
         </div>
 
@@ -424,7 +455,7 @@
                     <div class="accordion-content px-4 pb-4">
                         <p class="text-gray-600 mb-2"><strong>Base Legal:</strong> Ley Reguladora de la Prestación Económica por Renuncia Voluntaria (2014)</p>
                         <p class="text-gray-600 mb-2">15 días por año de servicio. Tope: 2× salario mínimo.</p>
-                        <p class="text-gray-600"><strong>Requisitos:</strong> Mínimo 2 años de servicio + preaviso por escrito.</p>
+                        <p class="text-gray-600"><strong>Requisitos:</strong> Mínimo 2 años de servicio continuo + preaviso por escrito.</p>
                     </div>
                 </div>
             </div>
@@ -441,23 +472,228 @@
     <script>
         /* STREAMING_CHUNK:Inicializando lógica de la aplicación */
 
-        // Eventos condicionales
+        // ============================================================
+        // STREAMING_CHUNK:Función para calcular fecha del Domingo de Pascua (Algoritmo de Meeus/Jones/Butcher)
+        // ============================================================
+        function calcularPascua(year) {
+            const a = year % 19;
+            const b = Math.floor(year / 100);
+            const c = year % 100;
+            const d = Math.floor(b / 4);
+            const e = b % 4;
+            const f = Math.floor((b + 8) / 25);
+            const g = Math.floor((b - f + 1) / 3);
+            const h = (19 * a + b - d - g + 15) % 30;
+            const i = Math.floor(c / 4);
+            const k = c % 4;
+            const l = (32 + 2 * e + 2 * i - h - k) % 7;
+            const m = Math.floor((a + 11 * h + 22 * l) / 451);
+            const month = Math.floor((h + l - 7 * m + 114) / 31);
+            const day = ((h + l - 7 * m + 114) % 31) + 1;
+            return new Date(year, month - 1, day);
+        }
+
+        // ============================================================
+        // STREAMING_CHUNK:Generar lista de asuetos según año y departamento
+        // ============================================================
+        function generarAsuetos(year, departamento) {
+            const pascua = calcularPascua(year);
+            const juevesSanto = new Date(pascua); juevesSanto.setDate(pascua.getDate() - 3);
+            const viernesSanto = new Date(pascua); viernesSanto.setDate(pascua.getDate() - 2);
+            const sabadoSanto = new Date(pascua); sabadoSanto.setDate(pascua.getDate() - 1);
+
+            const asuetos = [
+                { id: 'anio_nuevo', fecha: `${year}-01-01`, nombre: '01 de enero - Año Nuevo', general: true },
+                { id: 'jueves_santo', fecha: formatISO(juevesSanto), nombre: `Jueves Santo (${formatDMY(juevesSanto)})`, general: true },
+                { id: 'viernes_santo', fecha: formatISO(viernesSanto), nombre: `Viernes Santo (${formatDMY(viernesSanto)})`, general: true },
+                { id: 'sabado_santo', fecha: formatISO(sabadoSanto), nombre: `Sábado Santo (${formatDMY(sabadoSanto)})`, general: true },
+                { id: 'dia_trabajo', fecha: `${year}-05-01`, nombre: '01 de mayo - Día del Trabajo', general: true },
+                { id: 'dia_madre', fecha: `${year}-05-10`, nombre: '10 de mayo - Día de la Madre', general: true },
+                { id: 'dia_padre', fecha: `${year}-06-17`, nombre: '17 de junio - Día del Padre', general: true },
+                { id: 'divino_salvador', fecha: `${year}-08-06`, nombre: '06 de agosto - Divino Salvador del Mundo', general: true },
+                { id: 'independencia', fecha: `${year}-09-15`, nombre: '15 de septiembre - Independencia Patria', general: true },
+                { id: 'dia_difuntos', fecha: `${year}-11-02`, nombre: '02 de noviembre - Día de los Difuntos', general: true },
+                { id: 'navidad', fecha: `${year}-12-25`, nombre: '25 de diciembre - Navidad', general: true }
+            ];
+
+            // Asuetos locales
+            if (departamento === 'san_salvador' || departamento === 'ambos') {
+                asuetos.push({ id: 'ss_3ago', fecha: `${year}-08-03`, nombre: '03 de agosto - Fiestas San Salvador', local: 'San Salvador' });
+                asuetos.push({ id: 'ss_5ago', fecha: `${year}-08-05`, nombre: '05 de agosto - Fiestas San Salvador', local: 'San Salvador' });
+            }
+            if (departamento === 'san_miguel' || departamento === 'ambos') {
+                asuetos.push({ id: 'sm_21nov', fecha: `${year}-11-21`, nombre: '21 de noviembre - Fiestas San Miguel', local: 'San Miguel' });
+            }
+
+            return asuetos;
+        }
+
+        function formatISO(d) {
+            return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+        }
+        function formatDMY(d) {
+            return String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
+        }
+
+        // ============================================================
+        // STREAMING_CHUNK:Actualizar lista de asuetos según fecha de terminación
+        // ============================================================
+        function actualizarListaAsuetos() {
+            const fechaTerm = document.getElementById('fechaTerminacion').value;
+            const fechaIng = document.getElementById('fechaIngreso').value;
+            const departamento = document.getElementById('departamento').value;
+            const container = document.getElementById('listaAsuetos');
+
+            if (!fechaTerm || !fechaIng) {
+                container.innerHTML = '<p class="text-sm text-gray-500 italic">Ingrese las fechas de ingreso y terminación para ver los asuetos del último mes.</p>';
+                return;
+            }
+
+            const dTerm = new Date(fechaTerm + 'T12:00:00');
+            const dIng = new Date(fechaIng + 'T12:00:00');
+
+            if (dTerm <= dIng) {
+                container.innerHTML = '<p class="text-sm text-red-600 italic">La fecha de terminación debe ser posterior a la de ingreso.</p>';
+                return;
+            }
+
+            // Determinar el último mes trabajado (mes de la fecha de terminación)
+            const year = dTerm.getFullYear();
+            const mes = dTerm.getMonth();
+
+            // Generar asuetos del año
+            const asuetosAnio = generarAsuetos(year, departamento);
+
+            // Filtrar asuetos del último mes trabajado
+            const asuetosDelMes = asuetosAnio.filter(a => {
+                const dAsueto = new Date(a.fecha + 'T12:00:00');
+                return dAsueto.getMonth() === mes && dAsueto.getFullYear() === year;
+            });
+
+            if (asuetosDelMes.length === 0) {
+                container.innerHTML = '<p class="text-sm text-gray-500 italic">No hay días de asueto en el último mes trabajado (' + getNombreMes(mes) + ' ' + year + ').</p>';
+                return;
+            }
+
+            container.innerHTML = asuetosDelMes.map(a => `
+                <div class="asueto-item flex items-center p-2 border border-gray-200 rounded-lg cursor-pointer">
+                    <input type="checkbox" id="asueto_${a.id}" value="${a.fecha}" class="mr-3 w-4 h-4 text-orange-600" onchange="actualizarContadorAsuetos()">
+                    <label for="asueto_${a.id}" class="flex-1 cursor-pointer text-sm text-gray-700">
+                        <span class="check-icon text-green-600 mr-1">✓</span>
+                        ${a.nombre}
+                        ${a.local ? `<span class="ml-1 text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">${a.local}</span>` : ''}
+                    </label>
+                </div>
+            `).join('');
+        }
+
+        function getNombreMes(m) {
+            return ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'][m];
+        }
+
+        function actualizarContadorAsuetos() {
+            const checks = document.querySelectorAll('#listaAsuetos input[type="checkbox"]:checked');
+            document.getElementById('totalAsuetosMarcados').textContent = checks.length;
+        }
+
+        // ============================================================
+        // STREAMING_CHUNK:Calcular antigüedad entre dos fechas
+        // ============================================================
+        function calcularAntiguedad(fechaIng, fechaTerm) {
+            const inicio = new Date(fechaIng + 'T12:00:00');
+            const fin = new Date(fechaTerm + 'T12:00:00');
+
+            let años = fin.getFullYear() - inicio.getFullYear();
+            let meses = fin.getMonth() - inicio.getMonth();
+            let dias = fin.getDate() - inicio.getDate();
+
+            if (dias < 0) {
+                meses--;
+                const mesAnterior = new Date(fin.getFullYear(), fin.getMonth(), 0);
+                dias += mesAnterior.getDate();
+            }
+            if (meses < 0) {
+                años--;
+                meses += 12;
+            }
+
+            return { años, meses, dias };
+        }
+
+        // ============================================================
+        // STREAMING_CHUNK:Actualizar antigüedad en pantalla y validar renuncia
+        // ============================================================
+        function actualizarAntiguedadYValidar() {
+            const fechaIng = document.getElementById('fechaIngreso').value;
+            const fechaTerm = document.getElementById('fechaTerminacion').value;
+            const divAnt = document.getElementById('antiguedadCalculada');
+            const alertRen = document.getElementById('alertRenuncia');
+            const alertRenOk = document.getElementById('alertRenunciaOk');
+            const causaSel = document.querySelector('input[name="causaTerminacion"]:checked');
+
+            if (!fechaIng || !fechaTerm) {
+                divAnt.textContent = 'Ingrese las fechas';
+                alertRen.classList.add('hidden');
+                alertRenOk.classList.add('hidden');
+                return;
+            }
+
+            const dIng = new Date(fechaIng + 'T12:00:00');
+            const dTerm = new Date(fechaTerm + 'T12:00:00');
+
+            if (dTerm <= dIng) {
+                divAnt.textContent = 'Fecha inválida';
+                divAnt.classList.add('text-red-600');
+                alertRen.classList.add('hidden');
+                alertRenOk.classList.add('hidden');
+                return;
+            }
+
+            divAnt.classList.remove('text-red-600', 'text-green-700');
+            const ant = calcularAntiguedad(fechaIng, fechaTerm);
+            divAnt.textContent = `${ant.años} años, ${ant.meses} meses, ${ant.dias} días`;
+
+            // Validar renuncia voluntaria (mínimo 2 años)
+            const aplicaRenuncia = (ant.años > 2) || (ant.años === 2 && (ant.meses > 0 || ant.dias >= 0));
+            // Ajuste: "2 años o más" significa años >= 2
+            const aplicaRen = ant.años >= 2;
+
+            if (causaSel && causaSel.value === 'renuncia') {
+                if (!aplicaRen) {
+                    alertRen.classList.remove('hidden');
+                    alertRenOk.classList.add('hidden');
+                } else {
+                    alertRen.classList.add('hidden');
+                    alertRenOk.classList.remove('hidden');
+                }
+            } else {
+                alertRen.classList.add('hidden');
+                alertRenOk.classList.add('hidden');
+            }
+
+            // Actualizar lista de asuetos
+            actualizarListaAsuetos();
+        }
+
+        // Eventos
+        document.getElementById('fechaIngreso').addEventListener('change', actualizarAntiguedadYValidar);
+        document.getElementById('fechaTerminacion').addEventListener('change', actualizarAntiguedadYValidar);
+        document.getElementById('departamento').addEventListener('change', actualizarListaAsuetos);
+
+        document.querySelectorAll('input[name="causaTerminacion"]').forEach(r => {
+            r.addEventListener('change', actualizarAntiguedadYValidar);
+        });
+
         document.querySelectorAll('input[name="vacacionesGozadas"]').forEach(r => {
             r.addEventListener('change', e => {
                 document.getElementById('vacacionesParcialesContainer').classList.toggle('hidden', e.target.value !== 'parciales');
             });
         });
-        document.querySelectorAll('input[name="causaTerminacion"]').forEach(r => r.addEventListener('change', validarRenuncia));
-        document.getElementById('anosLaborados').addEventListener('input', validarRenuncia);
-
-        function validarRenuncia() {
-            const c = document.querySelector('input[name="causaTerminacion"]:checked');
-            const a = parseInt(document.getElementById('anosLaborados').value) || 0;
-            document.getElementById('alertRenuncia').classList.toggle('hidden', !(c && c.value === 'renuncia' && a < 2));
-        }
 
         function fmt(m) { return '$' + m.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
         function fmtDate(d) { return new Date(d + 'T12:00:00').toLocaleDateString('es-SV', { day:'2-digit', month:'long', year:'numeric' }); }
+        function fmtDateShort(d) { return new Date(d + 'T12:00:00').toLocaleDateString('es-SV', { day:'2-digit', month:'2-digit', year:'numeric' }); }
+
         function numeroALetras(num) {
             const entero = Math.floor(num);
             const centavos = Math.round((num - entero) * 100);
@@ -465,7 +701,6 @@
                 'ONCE','DOCE','TRECE','CATORCE','QUINCE','DIECISÉIS','DIECISIETE','DIECIOCHO','DIECINUEVE','VEINTE'];
             const decenas = ['','DIEZ','VEINTE','TREINTA','CUARENTA','CINCUENTA','SESENTA','SETENTA','OCHENTA','NOVENTA'];
             const centenas = ['','CIENTO','DOSCIENTOS','TRESCIENTOS','CUATROCIENTOS','QUINIENTOS','SEISCIENTOS','SETECIENTOS','OCHOCIENTOS','NOVECIENTOS'];
-
             function convertirGrupo(n) {
                 if (n === 0) return '';
                 if (n === 100) return 'CIEN';
@@ -475,51 +710,69 @@
                 if (n > 0) r += unidades[n];
                 return r.trim();
             }
-
             let resultado = '';
-            if (entero === 0) { resultado = 'CERO'; }
+            if (entero === 0) resultado = 'CERO';
             else {
-                if (entero >= 1000000) { resultado += convertirGrupo(Math.floor(entero/1000000)) + ' MILLÓN '; }
+                if (entero >= 1000000) resultado += convertirGrupo(Math.floor(entero/1000000)) + ' MILLÓN ';
                 let miles = Math.floor((entero % 1000000) / 1000);
-                if (miles > 0) { resultado += (miles === 1 ? 'MIL ' : convertirGrupo(miles) + ' MIL '); }
+                if (miles > 0) resultado += (miles === 1 ? 'MIL ' : convertirGrupo(miles) + ' MIL ');
                 let resto = entero % 1000;
                 if (resto > 0) resultado += convertirGrupo(resto);
             }
-            resultado = resultado.trim();
-            resultado += ' ' + centavos.toString().padStart(2,'0') + '/100 DÓLARES DE LOS ESTADOS UNIDOS DE AMÉRICA';
-            return resultado;
+            return resultado.trim() + ' ' + centavos.toString().padStart(2,'0') + '/100 DÓLARES DE LOS ESTADOS UNIDOS DE AMÉRICA';
         }
 
         /* STREAMING_CHUNK:Función principal de cálculo */
         function calcularPrestaciones(e) {
             e.preventDefault();
 
+            const fechaIngreso = document.getElementById('fechaIngreso').value;
+            const fechaTerminacion = document.getElementById('fechaTerminacion').value;
             const salarioMensual = parseFloat(document.getElementById('salarioMensual').value);
-            const anosLaborados = parseInt(document.getElementById('anosLaborados').value);
-            const mesesLaborados = parseInt(document.getElementById('mesesLaborados').value);
             const salarioMinimo = parseFloat(document.getElementById('salarioMinimo').value);
             const causa = document.querySelector('input[name="causaTerminacion"]:checked')?.value;
             const vacGoz = document.querySelector('input[name="vacacionesGozadas"]:checked')?.value;
             const mesesVacGoz = parseInt(document.getElementById('mesesVacacionesGozadas').value) || 0;
             const heDiurnas = parseInt(document.getElementById('horasExtrasDiurnas').value) || 0;
             const heNocturnas = parseInt(document.getElementById('horasExtrasNocturnas').value) || 0;
-            const diasAsueto = parseInt(document.getElementById('diasAsueto').value) || 0;
             const diasDescanso = parseInt(document.getElementById('diasDescansoSemanal').value) || 0;
 
-            if (!salarioMensual || !causa || !vacGoz) { alert('Complete todos los campos obligatorios'); return; }
-            if (salarioMensual <= 0) { alert('El salario debe ser mayor a cero'); return; }
-            if (mesesLaborados < 0 || mesesLaborados > 11) { alert('Meses entre 0 y 11'); return; }
-            if (causa === 'renuncia' && anosLaborados < 2) { alert('Renuncia voluntaria requiere mínimo 2 años de servicio.'); return; }
+            // Contar asuetos marcados
+            const asuetosMarcados = Array.from(document.querySelectorAll('#listaAsuetos input[type="checkbox"]:checked')).map(c => c.value);
+            const diasAsueto = asuetosMarcados.length;
+
+            // Validaciones
+            if (!fechaIngreso || !fechaTerminacion) { alert('Ingrese las fechas de ingreso y terminación'); return; }
+            const dIng = new Date(fechaIngreso + 'T12:00:00');
+            const dTerm = new Date(fechaTerminacion + 'T12:00:00');
+            if (dTerm <= dIng) { alert('La fecha de terminación debe ser posterior a la de ingreso'); return; }
+            if (!salarioMensual || salarioMensual <= 0) { alert('El salario debe ser mayor a cero'); return; }
+            if (!causa) { alert('Seleccione la causa de terminación'); return; }
+            if (!vacGoz) { alert('Seleccione el estado de vacaciones'); return; }
+
+            // Calcular antigüedad
+            const antig = calcularAntiguedad(fechaIngreso, fechaTerminacion);
+            const anosLaborados = antig.años;
+            const mesesLaborados = antig.meses;
+
+            // Validar renuncia
+            if (causa === 'renuncia' && anosLaborados < 2) {
+                alert('La renuncia voluntaria con prestación económica requiere mínimo 2 años de servicio continuo. Antigüedad actual: ' + anosLaborados + ' años, ' + mesesLaborados + ' meses.');
+                return;
+            }
 
             const SBD = salarioMensual / 30;
             const topeLegal = salarioMinimo * 4;
             let aplicoTope = false;
             let salarioIndemnizacion = salarioMensual;
 
-            if (causa === 'despido' && salarioMensual > topeLegal) { salarioIndemnizacion = topeLegal; aplicoTope = true; }
+            if (causa === 'despido' && salarioMensual > topeLegal) {
+                salarioIndemnizacion = topeLegal;
+                aplicoTope = true;
+            }
             const SBDi = salarioIndemnizacion / 30;
 
-            // 1. VACACIONES
+            // 1. VACACIONES PROPORCIONALES
             let vacProp = 0, vacDet = '';
             const vacAnual = SBD * 15 * 1.3;
             if (vacGoz === 'no') {
@@ -533,13 +786,13 @@
                 vacDet = mRest > 0 ? `Ajuste: ${mesesLaborados} - ${mesesVacGoz} = ${mRest} meses` : 'Meses gozados cubren el período';
             }
 
-            // 2. AGUINALDO
+            // 2. AGUINALDO PROPORCIONAL
             let diasAg = 15;
             if (anosLaborados >= 3 && anosLaborados < 10) diasAg = 19;
             else if (anosLaborados >= 10) diasAg = 21;
             const agProp = (SBD * diasAg * mesesLaborados) / 12;
 
-            // 3. INDEMNIZACIÓN
+            // 3. INDEMNIZACIÓN / COMPENSACIÓN
             let indem = 0, causaTxt = '', indemDet = '';
             if (causa === 'despido') {
                 indem = SBDi * 30 * anosLaborados + (SBDi * 30 * mesesLaborados) / 12;
@@ -557,7 +810,7 @@
                 indemDet = `Ley 2014 · 15 días × ${anosLaborados}a + prop ${mesesLaborados}m`;
             }
 
-            // 4-7. JORNADAS ESPECIALES
+            // 4-7. JORNADAS ESPECIALES (último mes)
             const vhd = SBD / 8;
             const heD = vhd * heDiurnas * 2;
             const vhn = vhd * 1.25;
@@ -567,7 +820,7 @@
 
             const totalBruto = vacProp + agProp + indem + heD + heN + asu + dds;
 
-            // Mostrar resultados en pantalla
+            // Mostrar resultados
             document.getElementById('resultados').classList.remove('hidden');
             document.getElementById('totalBruto').textContent = fmt(totalBruto);
             document.getElementById('antiguedad').textContent = `${anosLaborados} años, ${mesesLaborados} meses`;
@@ -583,23 +836,34 @@
             document.getElementById('heNocturnasMonto').textContent = fmt(heN);
             document.getElementById('heNocturnasDetalle').textContent = `${heNocturnas}h × ${fmt(vhn)} × 2`;
             document.getElementById('asuetosMonto').textContent = fmt(asu);
-            document.getElementById('asuetosDetalle').textContent = `${diasAsueto}d × ${fmt(SBD)} × 2`;
+            document.getElementById('asuetosDetalle').textContent = `${diasAsueto}d × ${fmt(SBD)} × 2 (último mes)`;
             document.getElementById('descansoSemanalMonto').textContent = fmt(dds);
             document.getElementById('descansoSemanalDetalle').textContent = `${diasDescanso}d × ${fmt(SBD)} × 1.5`;
             document.getElementById('alertTope').classList.toggle('hidden', !aplicoTope);
+
+            // Generar detalle de asuetos para el PDF
+            const asuetosDetalleLista = asuetosMarcados.map(fecha => {
+                const d = new Date(fecha + 'T12:00:00');
+                const year = d.getFullYear();
+                const depto = document.getElementById('departamento').value;
+                const todos = generarAsuetos(year, depto);
+                const asueto = todos.find(a => a.fecha === fecha);
+                return { fecha, nombre: asueto ? asueto.nombre : fmtDateShort(fecha) };
+            });
 
             window.D = {
                 nombreTrabajador: document.getElementById('nombreTrabajador').value || 'N/A',
                 duiTrabajador: document.getElementById('duiTrabajador').value || 'N/A',
                 nombrePatrono: document.getElementById('nombrePatrono').value || 'N/A',
                 cargo: document.getElementById('cargoTrabajador').value || 'N/A',
-                fechaIngreso: document.getElementById('fechaIngreso').value,
-                fechaTerminacion: document.getElementById('fechaTerminacion').value,
+                departamento: document.getElementById('departamento').value,
+                fechaIngreso, fechaTerminacion,
                 salarioMensual, SBD, anosLaborados, mesesLaborados, salarioMinimo,
                 causa, causaTxt, vacGoz, mesesVacGoz,
                 vacProp, vacDet, agProp, diasAg, indem, indemDet, aplicoTope, topeLegal, salarioIndemnizacion,
-                heDiurnas, heD, heNocturnas, heN, diasAsueto, asu, diasDescanso, dds,
-                vhd, vhn, totalBruto
+                heDiurnas, heD, heNocturnas, heN,
+                diasAsueto, asuetosMarcados, asuetosDetalleLista, asu,
+                diasDescanso, dds, vhd, vhn, totalBruto
             };
 
             document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
@@ -610,24 +874,27 @@
             const d = window.D;
             if (!d) { alert('Primero calcule las prestaciones'); return; }
 
-            // Calcular deducciones de ley (estimadas)
-            // ISSS: 3% del salario mensual (tope $1,000 para cotización)
             const baseISSS = Math.min(d.salarioMensual, 1000);
             const isss = baseISSS * 0.03;
-            // AFP: 7.25% del salario mensual
             const afp = d.salarioMensual * 0.0725;
-            // ISR estimado sobre remuneración gravada (simplificado 10% sobre excedente de $472)
             const remuneracionGravada = d.vacProp + d.heD + d.heN + d.asu + d.dds;
             let isr = 0;
-            if (remuneracionGravada > 472) { isr = (remuneracionGravada - 472) * 0.10 + 17.67; }
+            if (remuneracionGravada > 472) isr = (remuneracionGravada - 472) * 0.10 + 17.67;
             const montoExento = d.indem + d.agProp;
             const totalDeducciones = isss + afp + isr;
             const montoNeto = d.totalBruto - totalDeducciones;
             const ahora = new Date();
             const fechaGen = ahora.toLocaleDateString('es-SV') + ' ' + ahora.toLocaleTimeString('es-SV', {hour:'2-digit',minute:'2-digit'});
 
+            // Detalle de asuetos para el PDF
+            let asuetosFilas = '';
+            if (d.asuetosDetalleLista.length > 0) {
+                asuetosFilas = d.asuetosDetalleLista.map(a =>
+                    `<tr><td style="padding-left:20px; font-size:10px;">↳ ${a.nombre}</td><td></td><td style="text-align:right; font-size:10px;">${fmt((d.SBD * 2))}</td></tr>`
+                ).join('');
+            }
+
             const html = `
-                <!-- PÁGINA 1 -->
                 <div class="pdf-header">
                     <h1 style="font-size:18px; color:#1e3a8a; margin:0;">COMPROBANTE DE LIQUIDACIÓN DE PRESTACIONES LABORALES</h1>
                     <p style="margin:4px 0 0; color:#555;">República de El Salvador</p>
@@ -636,6 +903,7 @@
                 <div class="pdf-section-title">I. Datos de las partes</div>
                 <table style="margin-top:6px;">
                     <tr><td style="width:30%; font-weight:600; background:#f3f4f6;">Persona trabajadora</td><td>${d.nombreTrabajador.toUpperCase()}</td></tr>
+                    ${d.duiTrabajador !== 'N/A' ? `<tr><td style="font-weight:600; background:#f3f4f6;">DUI</td><td>${d.duiTrabajador}</td></tr>` : ''}
                     <tr><td style="font-weight:600; background:#f3f4f6;">Patrono</td><td>${d.nombrePatrono}</td></tr>
                     <tr><td style="font-weight:600; background:#f3f4f6;">Cargo desempeñado</td><td>${d.cargo}</td></tr>
                     <tr><td style="font-weight:600; background:#f3f4f6;">Salario mensual</td><td>${fmt(d.salarioMensual)}</td></tr>
@@ -647,21 +915,20 @@
 
                 <div class="pdf-section-title">II. Desglose de prestaciones liquidadas</div>
                 <table style="margin-top:6px;">
-                    <thead>
-                        <tr><th>Concepto</th><th>Base legal</th><th style="text-align:right;">Monto</th></tr>
-                    </thead>
+                    <thead><tr><th>Concepto</th><th>Base legal</th><th style="text-align:right;">Monto</th></tr></thead>
                     <tbody>
                         <tr><td>Vacación proporcional</td><td>Arts. 177 y 187 CT</td><td style="text-align:right;">${fmt(d.vacProp)}</td></tr>
                         <tr><td>Aguinaldo proporcional</td><td>Arts. 196-198 CT</td><td style="text-align:right;">${fmt(d.agProp)}</td></tr>
                         <tr><td>${d.causa === 'despido' ? 'Indemnización por despido injustificado' : 'Compensación por renuncia voluntaria'}</td><td>${d.causa === 'despido' ? 'Art. 58 CT' : 'Ley Renuncia 2014'}</td><td style="text-align:right;">${fmt(d.indem)}</td></tr>
-                        <tr><td>Horas extras diurnas</td><td>Art. 169 CT</td><td style="text-align:right;">${fmt(d.heD)}</td></tr>
-                        <tr><td>Horas extras nocturnas</td><td>Arts. 168 y 169 CT</td><td style="text-align:right;">${fmt(d.heN)}</td></tr>
-                        <tr><td>Días de asueto laborados</td><td>Art. 192 CT</td><td style="text-align:right;">${fmt(d.asu)}</td></tr>
-                        <tr><td>Días de descanso semanal laborados</td><td>Arts. 175 y 176 CT</td><td style="text-align:right;">${fmt(d.dds)}</td></tr>
+                        <tr><td>Horas extras diurnas (último mes)</td><td>Art. 169 CT</td><td style="text-align:right;">${fmt(d.heD)}</td></tr>
+                        <tr><td>Horas extras nocturnas (último mes)</td><td>Arts. 168 y 169 CT</td><td style="text-align:right;">${fmt(d.heN)}</td></tr>
+                        <tr><td>Días de asueto laborados (último mes)</td><td>Art. 192 CT</td><td style="text-align:right;">${fmt(d.asu)}</td></tr>
+                        ${asuetosFilas}
+                        <tr><td>Días de descanso semanal laborados (último mes)</td><td>Arts. 175 y 176 CT</td><td style="text-align:right;">${fmt(d.dds)}</td></tr>
                         <tr class="pdf-total-row"><td colspan="2">TOTAL DEVENGADO (BRUTO)</td><td style="text-align:right;">${fmt(d.totalBruto)}</td></tr>
                     </tbody>
                 </table>
-                ${d.aplicoTope ? '<p style="color:#b45309; font-size:10px; margin-top:4px;">⚠ Se aplicó tope legal: salario base para indemnización limitado a 4× SML ('+fmt(d.topeLegal)+').</p>' : ''}
+                ${d.aplicoTope ? '<p style="color:#b45309; font-size:10px; margin-top:4px;">⚠ Se aplicó tope legal: salario base limitado a 4× SML ('+fmt(d.topeLegal)+').</p>' : ''}
 
                 <div class="pdf-section-title">III. Deducciones de ley y neto a pagar</div>
                 <p style="font-size:10px; margin:6px 0;">Remuneración gravada: ${fmt(remuneracionGravada)}. Monto exento de ISR y de cotizaciones: ${fmt(montoExento)} (indemnización y aguinaldo).</p>
@@ -677,7 +944,6 @@
                 <p style="margin-top:8px; font-weight:600; font-size:11px;">Monto neto en letras:</p>
                 <p style="font-size:10px; text-transform:uppercase;">${numeroALetras(montoNeto)}</p>
 
-                <!-- PÁGINA 2 -->
                 <div class="pdf-page-break"></div>
                 <div class="pdf-header">
                     <h1 style="font-size:16px; color:#1e3a8a; margin:0;">COMPROBANTE DE LIQUIDACIÓN DE PRESTACIONES LABORALES</h1>
@@ -714,23 +980,15 @@
                 </div>
             `;
 
-            // Guardar para impresión
             document.getElementById('pdfReport').innerHTML = html;
             document.getElementById('pdfReport').style.display = 'block';
-
-            // Mostrar vista previa en pantalla
             document.getElementById('pdfPreviewContent').innerHTML = html;
             document.getElementById('pdfPreviewContainer').classList.remove('hidden');
             document.getElementById('pdfPreviewContainer').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function imprimirPDF() {
-            window.print();
-        }
-
-        function cerrarPreview() {
-            document.getElementById('pdfPreviewContainer').classList.add('hidden');
-        }
+        function imprimirPDF() { window.print(); }
+        function cerrarPreview() { document.getElementById('pdfPreviewContainer').classList.add('hidden'); }
 
         /* STREAMING_CHUNK:Desglose legal detallado */
         function mostrarDesgloseLegal() {
@@ -740,8 +998,9 @@
                 <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
                     <h3 class="font-bold text-blue-900 mb-2"><i class="fas fa-calculator mr-2"></i>Datos Base</h3>
                     <ul class="space-y-1 text-gray-700 text-sm">
-                        <li><strong>Salario Mensual:</strong> ${fmt(d.salarioMensual)} → <strong>SBD:</strong> ${fmt(d.SBD)} (SBM ÷ 30)</li>
+                        <li><strong>Ingreso:</strong> ${fmtDate(d.fechaIngreso)} → <strong>Terminación:</strong> ${fmtDate(d.fechaTerminacion)}</li>
                         <li><strong>Antigüedad:</strong> ${d.anosLaborados} años, ${d.mesesLaborados} meses</li>
+                        <li><strong>Salario Mensual:</strong> ${fmt(d.salarioMensual)} → <strong>SBD:</strong> ${fmt(d.SBD)}</li>
                         <li><strong>SML:</strong> ${fmt(d.salarioMinimo)} → <strong>Tope 4×:</strong> ${fmt(d.topeLegal)}</li>
                         <li><strong>Causa:</strong> ${d.causaTxt}</li>
                     </ul>
@@ -757,9 +1016,8 @@
                 <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded">
                     <h3 class="font-bold text-red-900 mb-2"><i class="fas fa-gift mr-2"></i>2. Aguinaldo Proporcional (Arts. 196-198 CT)</h3>
                     <div class="text-sm text-gray-700 space-y-1">
-                        <p><strong>Categoría:</strong> ${d.diasAg} días (${d.anosLaborados} años de antigüedad)</p>
-                        <p><strong>Fórmula:</strong> PA = SBD × ${d.diasAg} × (${d.mesesLaborados}/12) = ${fmt(d.SBD)} × ${d.diasAg} × ${(d.mesesLaborados/12).toFixed(4)}</p>
-                        <p class="font-bold text-red-700">Resultado: ${fmt(d.agProp)}</p>
+                        <p><strong>Categoría:</strong> ${d.diasAg} días (${d.anosLaborados} años)</p>
+                        <p><strong>Fórmula:</strong> PA = SBD × ${d.diasAg} × (${d.mesesLaborados}/12) = <strong class="text-red-700">${fmt(d.agProp)}</strong></p>
                     </div>
                 </div>
                 <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded">
@@ -778,11 +1036,12 @@
                     </div>
                 </div>
                 <div class="bg-yellow-50 border-l-4 border-yellow-600 p-4 rounded">
-                    <h3 class="font-bold text-yellow-900 mb-2"><i class="fas fa-sun mr-2"></i>4-7. Jornadas Especiales</h3>
+                    <h3 class="font-bold text-yellow-900 mb-2"><i class="fas fa-sun mr-2"></i>4-7. Jornadas Especiales (Último mes trabajado)</h3>
                     <div class="text-sm text-gray-700 space-y-1">
                         <p><strong>HE Diurnas:</strong> HE = H × HL × 2 → ${fmt(d.vhd)} × ${d.heDiurnas} × 2 = <strong>${fmt(d.heD)}</strong></p>
                         <p><strong>HE Nocturnas:</strong> HN = HD×1.25, luego ×2 → ${fmt(d.vhn)} × ${d.heNocturnas} × 2 = <strong>${fmt(d.heN)}</strong></p>
                         <p><strong>Asuetos:</strong> SE = SBD × 2 → ${fmt(d.SBD)} × ${d.diasAsueto} × 2 = <strong>${fmt(d.asu)}</strong></p>
+                        ${d.asuetosDetalleLista.length > 0 ? `<ul class="list-disc list-inside text-xs">${d.asuetosDetalleLista.map(a => `<li>${a.nombre} → ${fmt(d.SBD*2)}</li>`).join('')}</ul>` : '<p class="italic text-xs">Sin asuetos marcados.</p>'}
                         <p><strong>Descanso Semanal:</strong> SDD = SBD × 1.5 → ${fmt(d.SBD)} × ${d.diasDescanso} × 1.5 = <strong>${fmt(d.dds)}</strong></p>
                     </div>
                 </div>
