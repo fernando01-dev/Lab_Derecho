@@ -8,7 +8,9 @@
     <!-- Google Font: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400;1,500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400;1,500&display=swap"
+        rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -61,6 +63,7 @@
                 opacity: 0;
                 transform: translateY(15px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -72,9 +75,12 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 0 0 rgba(27, 42, 74, 0.6);
             }
+
             50% {
                 box-shadow: 0 0 0 10px rgba(27, 42, 74, 0);
             }
@@ -341,12 +347,15 @@
         <div class="container mx-auto px-4 py-5">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3.5">
-                    <div class="w-12 h-12 rounded-lg bg-[#283e68] border border-[#3b5998] flex items-center justify-center shadow-inner">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-[#283e68] border border-[#3b5998] flex items-center justify-center shadow-inner">
                         <i class="fas fa-calculator text-2xl text-blue-100"></i>
                     </div>
                     <div>
-                        <h1 class="text-xl md:text-2xl font-bold tracking-tight text-[#fbfaf7]">Calculadora de Prestaciones Laborales</h1>
-                        <p class="text-blue-200/90 text-xs md:text-sm font-light">República de El Salvador · Código de Trabajo y Leyes Laborales</p>
+                        <h1 class="text-xl md:text-2xl font-bold tracking-tight text-[#fbfaf7]">Calculadora de
+                            Prestaciones Laborales</h1>
+                        <p class="text-blue-200/90 text-xs md:text-sm font-light">República de El Salvador · Código de
+                            Trabajo y Leyes Laborales</p>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-2 text-blue-200/70 text-xs">
@@ -365,7 +374,8 @@
                     <i class="fas fa-file-invoice text-[#233876] mr-3 text-xl"></i>
                     Formulario de Liquidación Laboral
                 </h2>
-                <span class="text-xs bg-[#eef2f8] text-[#1b2a4a] border border-[#cbd5e1] px-3 py-1 rounded-full font-medium hidden sm:inline-block">
+                <span
+                    class="text-xs bg-[#eef2f8] text-[#1b2a4a] border border-[#cbd5e1] px-3 py-1 rounded-full font-medium hidden sm:inline-block">
                     Legislación Salvadoreña
                 </span>
             </div>
@@ -374,13 +384,17 @@
 
                 <!-- BLOQUE 0: Datos de las partes y Opción de Liquidación Anónima -->
                 <div class="bloque-card rounded-lg p-5">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e2dfd5] pb-3 mb-4 gap-2">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e2dfd5] pb-3 mb-4 gap-2">
                         <h3 class="text-base font-bold text-[#1b2a4a] flex items-center">
-                            <span class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">0</span>
+                            <span
+                                class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">0</span>
                             Datos de las Partes (para Comprobante Legal PDF)
                         </h3>
-                        <label class="flex items-center cursor-pointer bg-[#eef2f8] hover:bg-[#e4ebf5] border border-[#cbd5e1] px-3 py-1.5 rounded-md transition-colors select-none">
-                            <input type="checkbox" id="checkAnonimo" class="w-4 h-4 text-[#233876] rounded border-[#d1cdc2] focus:ring-[#233876] mr-2">
+                        <label
+                            class="flex items-center cursor-pointer bg-[#eef2f8] hover:bg-[#e4ebf5] border border-[#cbd5e1] px-3 py-1.5 rounded-md transition-colors select-none">
+                            <input type="checkbox" id="checkAnonimo"
+                                class="w-4 h-4 text-[#233876] rounded border-[#d1cdc2] focus:ring-[#233876] mr-2">
                             <span class="text-xs font-semibold text-[#1b2a4a] flex items-center">
                                 <i class="fas fa-user-secret mr-1.5 text-[#233876]"></i> Cálculo / Liquidación Anónima
                             </span>
@@ -388,12 +402,17 @@
                     </div>
 
                     <!-- Mensaje informativo cuando está en modo anónimo -->
-                    <div id="avisoAnonimo" class="hidden alert-warning p-3.5 rounded-lg mb-4 text-xs text-amber-900 border border-amber-300 flex items-start space-x-2.5 shadow-sm">
+                    <div id="avisoAnonimo"
+                        class="hidden alert-warning p-3.5 rounded-lg mb-4 text-xs text-amber-900 border border-amber-300 flex items-start space-x-2.5 shadow-sm">
                         <i class="fas fa-user-secret text-amber-700 text-base mt-0.5 flex-shrink-0"></i>
                         <div>
                             <p class="font-bold text-amber-950">Modo de Liquidación Anónima Activado</p>
                             <p class="text-amber-900 mt-0.5 leading-relaxed">
-                                Los campos de identificación personal (<strong>Nombre del trabajador</strong>, <strong>DUI</strong>, <strong>Nombre de la empresa</strong>, <strong>Cargo desempeñado</strong> y <strong>Zona donde laboró</strong>) se encuentran ocultos. Puede realizar todos los cálculos con total confidencialidad y generar su comprobante legal anónimo.
+                                Los campos de identificación personal (<strong>Nombre del trabajador</strong>,
+                                <strong>DUI</strong>, <strong>Nombre de la empresa</strong>, <strong>Cargo
+                                    desempeñado</strong> y <strong>Zona donde laboró</strong>) se encuentran ocultos.
+                                Puede realizar todos los cálculos con total confidencialidad y generar su comprobante
+                                legal anónimo.
                             </p>
                         </div>
                     </div>
@@ -401,7 +420,8 @@
                     <div id="camposPersonales" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-user text-[#233876] mr-1"></i> Nombre completo del trabajador(a) <span id="reqNombre" class="text-red-600 font-bold">*</span>
+                                <i class="fas fa-user text-[#233876] mr-1"></i> Nombre completo del trabajador(a) <span
+                                    id="reqNombre" class="text-red-600 font-bold">*</span>
                             </label>
                             <input type="text" id="nombreTrabajador" required
                                 class="w-full px-3.5 py-2.5 bg-white border border-[#d1cdc2] rounded-md text-sm focus:ring-2 focus:ring-[#233876] outline-none"
@@ -417,7 +437,8 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-building text-[#233876] mr-1"></i> Nombre del Patrono / Empresa <span id="reqPatrono" class="text-red-600 font-bold">*</span>
+                                <i class="fas fa-building text-[#233876] mr-1"></i> Nombre del Patrono / Empresa <span
+                                    id="reqPatrono" class="text-red-600 font-bold">*</span>
                             </label>
                             <input type="text" id="nombrePatrono" required
                                 class="w-full px-3.5 py-2.5 bg-white border border-[#d1cdc2] rounded-md text-sm focus:ring-2 focus:ring-[#233876] outline-none"
@@ -425,7 +446,8 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-briefcase text-[#233876] mr-1"></i> Cargo desempeñado <span id="reqCargo" class="text-red-600 font-bold">*</span>
+                                <i class="fas fa-briefcase text-[#233876] mr-1"></i> Cargo desempeñado <span
+                                    id="reqCargo" class="text-red-600 font-bold">*</span>
                             </label>
                             <input type="text" id="cargoTrabajador" required
                                 class="w-full px-3.5 py-2.5 bg-white border border-[#d1cdc2] rounded-md text-sm focus:ring-2 focus:ring-[#233876] outline-none"
@@ -433,7 +455,8 @@
                         </div>
                         <div class="md:col-span-2 lg:col-span-2">
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-map-marker-alt text-[#233876] mr-1"></i> Municipio / Zona en que laboró (para asuetos locales) *
+                                <i class="fas fa-map-marker-alt text-[#233876] mr-1"></i> Municipio / Zona en que laboró
+                                (para asuetos locales) *
                             </label>
                             <select id="departamento"
                                 class="w-full px-3.5 py-2.5 bg-white border border-[#d1cdc2] rounded-md text-sm focus:ring-2 focus:ring-[#233876] outline-none">
@@ -449,23 +472,27 @@
                 <!-- BLOQUE 1: Fechas, salario y antigüedad (Fecha de entrada inicia en blanco) -->
                 <div class="bloque-card rounded-lg p-5">
                     <h3 class="text-base font-bold text-[#1b2a4a] mb-2 flex items-center">
-                        <span class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">1</span>
+                        <span
+                            class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">1</span>
                         Fechas, Salario y Antigüedad Laboral
                     </h3>
                     <p class="text-xs text-gray-600 mb-4">
-                        Ingrese la fecha en que entró a laborar; la antigüedad y la elegibilidad para renuncia se calcularán automáticamente.
+                        Ingrese la fecha en que entró a laborar; la antigüedad y la elegibilidad para renuncia se
+                        calcularán automáticamente.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-calendar-plus text-[#233876] mr-1"></i> Fecha de Entrada (Día/Mes/Año) *
+                                <i class="fas fa-calendar-plus text-[#233876] mr-1"></i> Fecha de Entrada (Día/Mes/Año)
+                                *
                             </label>
                             <input type="date" id="fechaIngreso" required
                                 class="w-full px-3.5 py-2.5 bg-white border border-[#d1cdc2] rounded-md text-sm focus:ring-2 focus:ring-[#233876] outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-calendar-check text-[#233876] mr-1"></i> Fecha de Salida (Día/Mes/Año) *
+                                <i class="fas fa-calendar-check text-[#233876] mr-1"></i> Fecha de Salida (Día/Mes/Año)
+                                *
                             </label>
                             <input type="date" id="fechaTerminacion" required
                                 class="w-full px-3.5 py-2.5 bg-white border border-[#d1cdc2] rounded-md text-sm focus:ring-2 focus:ring-[#233876] outline-none">
@@ -487,12 +514,14 @@
                                 class="w-full px-3.5 py-2.5 bg-white border border-[#d1cdc2] rounded-md text-sm font-bold text-[#1b2a4a] focus:ring-2 focus:ring-[#233876] outline-none"
                                 placeholder="Ej: 100.00, 200.00, 408.80">
                             <p class="text-[11px] text-gray-600 mt-1 flex items-center">
-                                <i class="fas fa-clock text-[#233876] mr-1"></i> Admite tiempo parcial, medio tiempo o por horas (ej: $100, $200).
+                                <i class="fas fa-clock text-[#233876] mr-1"></i> Admite tiempo parcial, medio tiempo o
+                                por horas (ej: $100, $200).
                             </p>
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-coins text-[#233876] mr-1"></i> Sector / Salario Mínimo Legal Vigente (USD)
+                                <i class="fas fa-coins text-[#233876] mr-1"></i> Sector / Salario Mínimo Legal Vigente
+                                (USD)
                             </label>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 <select id="sectorSalarioMinimo"
@@ -503,57 +532,104 @@
                                     <option value="286.08">Agropecuario ($286.08)</option>
                                     <option value="custom">Otro (Personalizado)</option>
                                 </select>
-                                <input type="number" id="salarioMinimo" step="0.01" min="0.01" required value="408.80" readonly
+                                <input type="number" id="salarioMinimo" step="0.01" min="0.01" required value="408.80"
+                                    readonly
                                     class="w-full px-3 py-2 bg-[#fbfaf7] border border-[#d1cdc2] rounded-md text-xs font-bold text-[#1b2a4a] outline-none"
                                     title="Base mínima legal de referencia">
                             </div>
                             <p class="text-[11px] text-gray-500 mt-1">
-                                <i class="fas fa-balance-scale mr-1 text-[#233876]"></i>Tope Art. 58 CT (4× SML para despido): <strong id="lblTopeLegal" class="text-[#1b2a4a]">$1,635.20</strong>
+                                <i class="fas fa-balance-scale mr-1 text-[#233876]"></i>Tope Art. 58 CT (4× SML para
+                                despido): <strong id="lblTopeLegal" class="text-[#1b2a4a]">$1,635.20</strong>
                             </p>
                         </div>
                     </div>
 
                     <!-- Alertas de validación de renuncia voluntaria -->
-                    <div id="alertRenuncia" class="hidden alert-warning p-4 rounded-lg mt-4 text-xs md:text-sm text-amber-900 border-2 border-amber-400 flex items-start space-x-3 shadow-sm">
+                    <div id="alertRenuncia"
+                        class="hidden alert-warning p-4 rounded-lg mt-4 text-xs md:text-sm text-amber-900 border-2 border-amber-400 flex items-start space-x-3 shadow-sm">
                         <i class="fas fa-info-circle text-amber-700 text-lg mt-0.5 flex-shrink-0"></i>
                         <div>
-                            <p class="font-bold text-amber-950">Aviso Legal sobre Prestación por Renuncia Voluntaria (D.L. 592)</p>
+                            <p class="font-bold text-amber-950">Aviso Legal sobre Prestación por Renuncia Voluntaria
+                                (D.L. 592)</p>
                             <p class="text-xs text-amber-900 mt-1 leading-relaxed">
-                                La <strong>Ley Reguladora de la Prestación Económica por Renuncia Voluntaria (Decreto N° 592)</strong> estipula un mínimo de <strong>2 años de servicio continuo</strong> para tener derecho al pago de la compensación económica de 15 días por año. Si la antigüedad es inferior a 2 años, se liquidarán exclusivamente las prestaciones irrenunciables devengadas (vacaciones y aguinaldo proporcional).
+                                La <strong>Ley Reguladora de la Prestación Económica por Renuncia Voluntaria (Decreto N°
+                                    592)</strong> estipula un mínimo de <strong>2 años de servicio continuo</strong>
+                                para tener derecho al pago de la compensación económica de 15 días por año. Si la
+                                antigüedad es inferior a 2 años, se liquidarán exclusivamente las prestaciones
+                                irrenunciables devengadas (vacaciones y aguinaldo proporcional).
                             </p>
                         </div>
                     </div>
-                    <div id="alertRenunciaOk" class="hidden alert-success p-3 rounded-lg mt-4 text-xs md:text-sm text-green-900 border border-green-300 flex items-center space-x-2">
+                    <div id="alertRenunciaOk"
+                        class="hidden alert-success p-3 rounded-lg mt-4 text-xs md:text-sm text-green-900 border border-green-300 flex items-center space-x-2">
                         <i class="fas fa-check-circle text-green-700 text-base"></i>
-                        <span><strong>Cumple requisito de antigüedad:</strong> El trabajador cuenta con 2 o más años de servicio continuo, por lo que califica para compensación económica por renuncia voluntaria (15 días por año) si cumple con el preaviso legal de 15 días.</span>
+                        <span><strong>Cumple requisito de antigüedad:</strong> El trabajador cuenta con 2 o más años de
+                            servicio continuo, por lo que califica para compensación económica por renuncia voluntaria
+                            (15 días por año) si cumple con el preaviso legal de 15 días.</span>
                     </div>
                 </div>
 
                 <!-- BLOQUE 2: Causa de finalización y Preaviso de Ley -->
                 <div class="bloque-card rounded-lg p-5">
                     <h3 class="text-base font-bold text-[#1b2a4a] mb-3 flex items-center">
-                        <span class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">2</span>
+                        <span
+                            class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">2</span>
                         Causa de Finalización de la Relación Laboral
                     </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <label id="labelDespido" class="flex items-start p-4 border-2 border-[#233876] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-all shadow-sm">
-                            <input type="radio" name="causaTerminacion" id="radioDespido" value="despido" required checked class="mt-1 mr-3 text-[#233876] focus:ring-[#233876]">
+                    <!-- Alerta de restricción por antigüedad < 2 años -->
+                    <div id="alertaAntiguedadInsuficiente"
+                        class="hidden mb-4 p-4 rounded-lg bg-amber-50 border-2 border-amber-400 shadow-sm fade-in">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-exclamation-triangle text-amber-600 text-xl mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <p class="font-bold text-sm text-[#1b2a4a]"><i class="fas fa-gavel text-[#233876] mr-1.5"></i> Despido Injustificado</p>
-                                <p class="text-xs text-gray-600 mt-1">Art. 58 CT · 30 días de salario por año laborado + fracción proporcional (Tope 4× SML).</p>
+                                <p class="font-bold text-sm text-amber-900"> Antigüedad Insuficiente — Solo aplica
+                                    Despido Injustificado</p>
+                                <p class="text-xs text-amber-800 mt-1 leading-relaxed">
+                                    El trabajador cuenta con <strong id="txtAntiguedadRestriccion">menos de 2
+                                        años</strong> de servicio continuo. Conforme al
+                                    <strong>Art. 58 del Código de Trabajo</strong> y la <strong>Ley Reguladora D.L.
+                                        592</strong>, la compensación
+                                    económica por renuncia voluntaria requiere un mínimo de <strong>2 años de
+                                        antigüedad</strong>.
+                                </p>
+                                <p
+                                    class="text-xs text-amber-950 font-semibold mt-2 bg-amber-100 p-2 rounded border border-amber-300">
+                                    <i class="fas fa-lock mr-1.5 text-amber-700"></i>
+                                    La opción <em>Renuncia Voluntaria</em> ha sido inhabilitada. Solo puede continuar
+                                    seleccionando <em>Despido Injustificado</em>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label id="labelDespido"
+                            class="flex items-start p-4 border-2 border-[#233876] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-all shadow-sm">
+                            <input type="radio" name="causaTerminacion" id="radioDespido" value="despido" required
+                                checked class="mt-1 mr-3 text-[#233876] focus:ring-[#233876]">
+                            <div>
+                                <p class="font-bold text-sm text-[#1b2a4a]"><i
+                                        class="fas fa-gavel text-[#233876] mr-1.5"></i> Despido Injustificado</p>
+                                <p class="text-xs text-gray-600 mt-1">Art. 58 CT · 30 días de salario por año laborado +
+                                    fracción proporcional (Tope 4× SML).</p>
                             </div>
                         </label>
-                        <label id="labelRenuncia" class="flex items-start p-4 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-all shadow-sm">
-                            <input type="radio" name="causaTerminacion" id="radioRenuncia" value="renuncia" class="mt-1 mr-3 text-[#233876] focus:ring-[#233876]">
+                        <label id="labelRenuncia"
+                            class="flex items-start p-4 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-all shadow-sm">
+                            <input type="radio" name="causaTerminacion" id="radioRenuncia" value="renuncia"
+                                class="mt-1 mr-3 text-[#233876] focus:ring-[#233876]">
                             <div>
-                                <p class="font-bold text-sm text-[#1b2a4a]"><i class="fas fa-handshake text-[#233876] mr-1.5"></i> Renuncia Voluntaria</p>
-                                <p class="text-xs text-gray-600 mt-1">Ley Reguladora D.L. 592 · Requiere preaviso escrito formal de 15 días con antelación.</p>
+                                <p class="font-bold text-sm text-[#1b2a4a]"><i
+                                        class="fas fa-handshake text-[#233876] mr-1.5"></i> Renuncia Voluntaria</p>
+                                <p class="text-xs text-gray-600 mt-1">Ley Reguladora D.L. 592 · Requiere preaviso
+                                    escrito formal de 15 días con antelación.</p>
                             </div>
                         </label>
                     </div>
 
                     <!-- Sub-bloque de preaviso condicional para renuncia voluntaria -->
-                    <div id="bloquePreavisoRenuncia" class="hidden mt-4 p-4 rounded-lg bg-[#fbfaf6] border-2 border-[#233876]/40 shadow-sm fade-in">
+                    <div id="bloquePreavisoRenuncia"
+                        class="hidden mt-4 p-4 rounded-lg bg-[#fbfaf6] border-2 border-[#233876]/40 shadow-sm fade-in">
                         <div class="flex items-center text-[#1b2a4a] text-xs md:text-sm font-bold mb-2">
                             <i class="fas fa-bullhorn text-[#233876] mr-2"></i>
                             Notificación de Preaviso Legal (Art. 3 Ley Reguladora D.L. 592 y Código de Trabajo)
@@ -563,32 +639,53 @@
                             ¿Dio aviso al patrono con los 15 días de antelación?
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label id="labelPreavisoSi" class="flex items-center p-3.5 border-2 border-[#d1cdc2] bg-white rounded-lg cursor-pointer hover:border-emerald-500 transition-all">
-                                <input type="radio" name="preavisoRenuncia" id="preavisoSi" value="si" class="mr-3 text-emerald-600 focus:ring-emerald-500 w-4 h-4">
+                            <label id="labelPreavisoSi"
+                                class="flex items-center p-3.5 border-2 border-[#d1cdc2] bg-white rounded-lg cursor-pointer hover:border-emerald-500 transition-all">
+                                <input type="radio" name="preavisoRenuncia" id="preavisoSi" value="si"
+                                    class="mr-3 text-emerald-600 focus:ring-emerald-500 w-4 h-4">
                                 <div>
-                                    <p class="text-xs font-bold text-emerald-900"><i class="fas fa-check-circle text-emerald-600 mr-1"></i> SÍ dio el preaviso con 15 días</p>
-                                    <p class="text-[11px] text-gray-600">Cumple el preaviso formal de ley. Se permite avanzar con el cálculo.</p>
+                                    <p class="text-xs font-bold text-emerald-900"><i
+                                            class="fas fa-check-circle text-emerald-600 mr-1"></i> SÍ dio el preaviso
+                                        con 15 días</p>
+                                    <p class="text-[11px] text-gray-600">Cumple el preaviso formal de ley. Se permite
+                                        avanzar con el cálculo.</p>
                                 </div>
                             </label>
-                            <label id="labelPreavisoNo" class="flex items-center p-3.5 border-2 border-[#d1cdc2] bg-white rounded-lg cursor-pointer hover:border-red-500 transition-all">
-                                <input type="radio" name="preavisoRenuncia" id="preavisoNo" value="no" class="mr-3 text-red-600 focus:ring-red-500 w-4 h-4">
+                            <label id="labelPreavisoNo"
+                                class="flex items-center p-3.5 border-2 border-[#d1cdc2] bg-white rounded-lg cursor-pointer hover:border-red-500 transition-all">
+                                <input type="radio" name="preavisoRenuncia" id="preavisoNo" value="no"
+                                    class="mr-3 text-red-600 focus:ring-red-500 w-4 h-4">
                                 <div>
-                                    <p class="text-xs font-bold text-red-800"><i class="fas fa-times-circle text-red-600 mr-1"></i> NO dio el preaviso con 15 días</p>
-                                    <p class="text-[11px] text-gray-600">Omisión de preaviso. Inhabilita botones y bloquea por completo el cálculo.</p>
+                                    <p class="text-xs font-bold text-red-800"><i
+                                            class="fas fa-times-circle text-red-600 mr-1"></i> NO dio el preaviso con 15
+                                        días</p>
+                                    <p class="text-[11px] text-gray-600">Omisión de preaviso. Inhabilita botones y
+                                        bloquea por completo el cálculo.</p>
                                 </div>
                             </label>
                         </div>
-                        <div id="alertaPreavisoNo" class="hidden alert-danger p-4 rounded-lg mt-3 text-xs text-red-900 border-2 border-red-500 shadow-sm fade-in">
+                        <div id="alertaPreavisoNo"
+                            class="hidden alert-danger p-4 rounded-lg mt-3 text-xs text-red-900 border-2 border-red-500 shadow-sm fade-in">
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-ban text-red-600 text-2xl mt-0.5 flex-shrink-0"></i>
                                 <div>
-                                    <p class="font-bold text-sm text-red-900">🚫 Ejecución del Cálculo Bloqueada por Omisión de Preaviso</p>
+                                    <p class="font-bold text-sm text-red-900">🚫 Ejecución del Cálculo Bloqueada por
+                                        Omisión de Preaviso</p>
                                     <p class="text-xs text-red-800 mt-1 leading-relaxed">
-                                        Conforme al <strong>Código de Trabajo de El Salvador</strong> y al <strong>Art. 3 de la Ley Reguladora de la Prestación Económica por Renuncia Voluntaria (Decreto Legislativo N° 592)</strong>, para tener derecho a prestaciones por renuncia voluntaria se debió dar el preaviso correspondiente por escrito al patrono con al menos <strong>15 días de anticipación</strong> (o 30 días para personal de jefatura o especializado).
+                                        Conforme al <strong>Código de Trabajo de El Salvador</strong> y al <strong>Art.
+                                            3 de la Ley Reguladora de la Prestación Económica por Renuncia Voluntaria
+                                            (Decreto Legislativo N° 592)</strong>, para tener derecho a prestaciones por
+                                        renuncia voluntaria se debió dar el preaviso correspondiente por escrito al
+                                        patrono con al menos <strong>15 días de anticipación</strong> (o 30 días para
+                                        personal de jefatura o especializado).
                                     </p>
-                                    <p class="text-xs text-red-950 font-semibold mt-2 bg-red-100 p-2 rounded border border-red-300">
+                                    <p
+                                        class="text-xs text-red-950 font-semibold mt-2 bg-red-100 p-2 rounded border border-red-300">
                                         <i class="fas fa-lock mr-1.5 text-red-700"></i>
-                                        El sistema ha inhabilitado los botones del formulario y bloqueado por completo la ejecución del cálculo. Para habilitar nuevamente el formulario y continuar, debe responder "SÍ" si el trabajador cumplió con el preaviso o seleccionar "Despido Injustificado".
+                                        El sistema ha inhabilitado los botones del formulario y bloqueado por completo
+                                        la ejecución del cálculo. Para habilitar nuevamente el formulario y continuar,
+                                        debe responder "SÍ" si el trabajador cumplió con el preaviso o seleccionar
+                                        "Despido Injustificado".
                                     </p>
                                 </div>
                             </div>
@@ -598,32 +695,42 @@
 
                 <!-- BLOQUE 3: Régimen y Estado de Vacaciones (Arts. 177 y 187 CT) -->
                 <div class="bloque-card rounded-lg p-5 transition-all duration-300" id="bloqueCardVacaciones">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e2dfd5] pb-3 mb-3 gap-2">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e2dfd5] pb-3 mb-3 gap-2">
                         <h3 class="text-base font-bold text-[#1b2a4a] flex items-center">
-                            <span class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">3</span>
+                            <span
+                                class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">3</span>
                             Régimen y Estado de Vacaciones (Arts. 177 y 187 CT)
                         </h3>
-                        <span id="badgeRegimenVacaciones" class="text-xs px-2.5 py-1 rounded-full font-bold bg-gray-100 text-gray-700 border border-gray-300">
+                        <span id="badgeRegimenVacaciones"
+                            class="text-xs px-2.5 py-1 rounded-full font-bold bg-gray-100 text-gray-700 border border-gray-300">
                             Pendiente de fechas
                         </span>
                     </div>
 
                     <!-- Aviso de sección inhabilitada por omisión de preaviso -->
-                    <div id="avisoBloqueoVacaciones" class="hidden alert-danger p-3 rounded-lg mb-3 text-xs text-red-900 border border-red-300 font-semibold flex items-center space-x-2">
+                    <div id="avisoBloqueoVacaciones"
+                        class="hidden alert-danger p-3 rounded-lg mb-3 text-xs text-red-900 border border-red-300 font-semibold flex items-center space-x-2">
                         <i class="fas fa-lock text-red-600 text-sm"></i>
-                        <span>Sección inhabilitada: por no haber dado el preaviso legal de 15 días con antelación, no tiene derecho a liquidación de prestaciones por renuncia voluntaria (Art. 3 D.L. 592 y Código de Trabajo).</span>
+                        <span>Sección inhabilitada: por no haber dado el preaviso legal de 15 días con antelación, no
+                            tiene derecho a liquidación de prestaciones por renuncia voluntaria (Art. 3 D.L. 592 y
+                            Código de Trabajo).</span>
                     </div>
 
                     <!-- Banner dinámico explicativo de validación de año cumplido vs incompleto -->
-                    <div id="bannerRegimenVacaciones" class="p-3.5 rounded-lg mb-4 text-xs bg-[#eef2f8] border border-[#cbd5e1] text-[#1b2a4a] flex items-start space-x-2.5">
+                    <div id="bannerRegimenVacaciones"
+                        class="p-3.5 rounded-lg mb-4 text-xs bg-[#eef2f8] border border-[#cbd5e1] text-[#1b2a4a] flex items-start space-x-2.5">
                         <i class="fas fa-info-circle text-[#233876] text-base mt-0.5 flex-shrink-0"></i>
                         <div id="textoRegimenVacaciones" class="leading-relaxed">
-                            Ingrese la fecha de entrada y salida en el Bloque 1 para contrastar automáticamente si el trabajador ya cumplió su año laboral vigente para disfrutar de sus vacaciones o si corresponde el cálculo de vacaciones proporcionales por tiempo laborado.
+                            Ingrese la fecha de entrada y salida en el Bloque 1 para contrastar automáticamente si el
+                            trabajador ya cumplió su año laboral vigente para disfrutar de sus vacaciones o si
+                            corresponde el cálculo de vacaciones proporcionales por tiempo laborado.
                         </div>
                     </div>
 
                     <!-- Contenedor para Año No Cumplido (< 1 año en Despido) - Vacaciones Proporcionales Automáticas -->
-                    <div id="contenedorCasoB" class="hidden p-4 rounded-lg bg-[#f0f4fa] border-2 border-[#233876]/40 shadow-sm space-y-3 fade-in">
+                    <div id="contenedorCasoB"
+                        class="hidden p-4 rounded-lg bg-[#f0f4fa] border-2 border-[#233876]/40 shadow-sm space-y-3 fade-in">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                             <span class="text-xs font-bold text-[#1b2a4a] flex items-center">
                                 <i class="fas fa-calculator text-[#233876] mr-1.5"></i>
@@ -634,9 +741,12 @@
                             </span>
                         </div>
                         <p class="text-xs text-gray-700 leading-relaxed">
-                            Al no haber alcanzado el año continuo de servicio al momento del despido, el Código de Trabajo de El Salvador determina que no procede la vacación completa de 15 días, sino el derecho al pago <strong>proporcional estricto</strong> según los meses y días trabajados.
+                            Al no haber alcanzado el año continuo de servicio al momento del despido, el Código de
+                            Trabajo de El Salvador determina que no procede la vacación completa de 15 días, sino el
+                            derecho al pago <strong>proporcional estricto</strong> según los meses y días trabajados.
                         </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-white p-3 rounded-lg border border-[#d1cdc2] text-xs">
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-white p-3 rounded-lg border border-[#d1cdc2] text-xs">
                             <div>
                                 <span class="text-gray-500 block font-medium">Tiempo laborado computado:</span>
                                 <strong id="lblTiempoCasoB" class="text-[#1b2a4a] text-sm">0 meses, 0 días</strong>
@@ -644,7 +754,8 @@
                             <div>
                                 <span class="text-gray-500 block font-medium">Días de vacación devengados:</span>
                                 <strong id="lblDiasPropCasoB" class="text-[#233876] text-sm">0.00 días</strong>
-                                <span class="text-[10px] text-gray-500 block">(Tasa legal: 1.25 días por mes trabajado)</span>
+                                <span class="text-[10px] text-gray-500 block">(Tasa legal: 1.25 días por mes
+                                    trabajado)</span>
                             </div>
                             <div>
                                 <span class="text-gray-500 block font-medium">Monto proporcional (+30% recargo):</span>
@@ -652,43 +763,58 @@
                                 <span class="text-[10px] text-gray-500 block">Días × Salario Básico Diario × 1.30</span>
                             </div>
                         </div>
-                        <div class="text-[11px] bg-[#eef2f8] p-2.5 rounded border border-[#cbd5e1] text-gray-700 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                            <span><i class="fas fa-balance-scale mr-1 text-[#233876]"></i><strong>Fórmula legal Art. 187 CT:</strong> [ (Meses × 15/12) + (Días × 15/360) ] × Salario Básico Diario × 1.30</span>
-                            <span class="text-emerald-800 font-bold flex items-center"><i class="fas fa-check-circle mr-1 text-emerald-600"></i>Cálculo automatizado</span>
+                        <div
+                            class="text-[11px] bg-[#eef2f8] p-2.5 rounded border border-[#cbd5e1] text-gray-700 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                            <span><i class="fas fa-balance-scale mr-1 text-[#233876]"></i><strong>Fórmula legal Art. 187
+                                    CT:</strong> [ (Meses × 15/12) + (Días × 15/360) ] × Salario Básico Diario ×
+                                1.30</span>
+                            <span class="text-emerald-800 font-bold flex items-center"><i
+                                    class="fas fa-check-circle mr-1 text-emerald-600"></i>Cálculo automatizado</span>
                         </div>
                     </div>
 
                     <!-- Contenedor para Año Cumplido (o Renuncia Voluntaria) - Vacaciones Anuales Completas / Gozadas -->
                     <div id="contenedorCasoA" class="space-y-4">
                         <p class="text-xs text-gray-600 mb-1">
-                            Selecciona el estado en que el trabajador deja las vacaciones correspondientes a su <strong>año cumplido</strong>:
+                            Selecciona el estado en que el trabajador deja las vacaciones correspondientes a su
+                            <strong>año cumplido</strong>:
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <label class="flex items-start p-3.5 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-colors">
-                                <input type="radio" name="vacacionesGozadas" id="vacNo" value="no" checked class="mt-1 mr-2.5 text-[#233876] focus:ring-[#233876]">
+                            <label
+                                class="flex items-start p-3.5 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-colors">
+                                <input type="radio" name="vacacionesGozadas" id="vacNo" value="no" checked
+                                    class="mt-1 mr-2.5 text-[#233876] focus:ring-[#233876]">
                                 <div>
                                     <p class="font-bold text-xs md:text-sm text-[#1b2a4a]">No ha gozado</p>
-                                    <p class="text-xs text-gray-600 mt-0.5">Se pagan completamente los 15 días laborados (+ 30% recargo de ley).</p>
+                                    <p class="text-xs text-gray-600 mt-0.5">Se pagan completamente los 15 días laborados
+                                        (+ 30% recargo de ley).</p>
                                 </div>
                             </label>
-                            <label class="flex items-start p-3.5 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-colors">
-                                <input type="radio" name="vacacionesGozadas" id="vacCompletas" value="completas" class="mt-1 mr-2.5 text-[#233876] focus:ring-[#233876]">
+                            <label
+                                class="flex items-start p-3.5 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-colors">
+                                <input type="radio" name="vacacionesGozadas" id="vacCompletas" value="completas"
+                                    class="mt-1 mr-2.5 text-[#233876] focus:ring-[#233876]">
                                 <div>
                                     <p class="font-bold text-xs md:text-sm text-[#1b2a4a]">Gozó completas</p>
-                                    <p class="text-xs text-gray-600 mt-0.5">Ya disfrutó el período completo anual. No aplica pago ($0.00).</p>
+                                    <p class="text-xs text-gray-600 mt-0.5">Ya disfrutó el período completo anual. No
+                                        aplica pago ($0.00).</p>
                                 </div>
                             </label>
-                            <label class="flex items-start p-3.5 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-colors">
-                                <input type="radio" name="vacacionesGozadas" id="vacParciales" value="parciales" class="mt-1 mr-2.5 text-[#233876] focus:ring-[#233876]">
+                            <label
+                                class="flex items-start p-3.5 border-2 border-[#d1cdc2] rounded-lg cursor-pointer hover:border-[#233876] bg-white transition-colors">
+                                <input type="radio" name="vacacionesGozadas" id="vacParciales" value="parciales"
+                                    class="mt-1 mr-2.5 text-[#233876] focus:ring-[#233876]">
                                 <div>
                                     <p class="font-bold text-xs md:text-sm text-[#1b2a4a]">Gozó parciales</p>
-                                    <p class="text-xs text-gray-600 mt-0.5">Descansó parte de sus vacaciones; se liquidan los días adeudados.</p>
+                                    <p class="text-xs text-gray-600 mt-0.5">Descansó parte de sus vacaciones; se
+                                        liquidan los días adeudados.</p>
                                 </div>
                             </label>
                         </div>
 
                         <!-- Cuadro desplegable para Vacaciones Parciales del año cumplido -->
-                        <div id="vacacionesParcialesContainer" class="hidden mt-4 p-4 rounded-lg bg-[#fbfaf6] border border-[#233876]/40 shadow-sm">
+                        <div id="vacacionesParcialesContainer"
+                            class="hidden mt-4 p-4 rounded-lg bg-[#fbfaf6] border border-[#233876]/40 shadow-sm">
                             <div class="flex items-center text-[#1b2a4a] text-xs md:text-sm font-bold mb-3">
                                 <i class="fas fa-umbrella-beach text-[#233876] mr-2"></i>
                                 Configuración de Días de Vacaciones Parciales (15 Días por Ley)
@@ -700,7 +826,8 @@
                                     </label>
                                     <input type="number" id="diasVacacionesGozadas" min="0" max="14" value="5"
                                         class="w-full px-3.5 py-2 bg-white border border-[#d1cdc2] rounded-md text-sm font-semibold text-[#1b2a4a] focus:ring-2 focus:ring-[#233876] outline-none">
-                                    <p class="text-xs text-gray-500 mt-1">Días en que el trabajador efectivamente descansó.</p>
+                                    <p class="text-xs text-gray-500 mt-1">Días en que el trabajador efectivamente
+                                        descansó.</p>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-semibold text-gray-700 mb-1">
@@ -711,25 +838,34 @@
                                     <p class="text-xs text-gray-500 mt-1">Días adeudados que serán remunerados.</p>
                                 </div>
                             </div>
-                            <div class="mt-3 text-xs bg-[#eef2f8] text-[#1b2a4a] p-2.5 rounded border border-[#cbd5e1] font-medium flex items-center justify-between">
+                            <div
+                                class="mt-3 text-xs bg-[#eef2f8] text-[#1b2a4a] p-2.5 rounded border border-[#cbd5e1] font-medium flex items-center justify-between">
                                 <span><i class="fas fa-check text-[#233876] mr-1.5"></i>Fórmula de liquidación:</span>
-                                <span class="font-bold"><span id="lblDiasPagar">10</span> días adeudados × Salario Básico Diario × 1.30 (recargo 30%)</span>
+                                <span class="font-bold"><span id="lblDiasPagar">10</span> días adeudados × Salario
+                                    Básico Diario × 1.30 (recargo 30%)</span>
                             </div>
                         </div>
 
                         <!-- Fracción adicional proporcional del año en curso (habilitada solamente en caso de Despido) -->
-                        <div id="bloqueFraccionAnioCurso" class="hidden p-3.5 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] mt-3">
+                        <div id="bloqueFraccionAnioCurso"
+                            class="hidden p-3.5 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] mt-3">
                             <div class="flex items-center justify-between">
                                 <label class="flex items-center cursor-pointer select-none">
-                                    <input type="checkbox" id="chkVacacionFraccion" checked class="w-4 h-4 text-[#233876] rounded border-[#d1cdc2] focus:ring-[#233876] mr-2">
+                                    <input type="checkbox" id="chkVacacionFraccion" checked
+                                        class="w-4 h-4 text-[#233876] rounded border-[#d1cdc2] focus:ring-[#233876] mr-2">
                                     <span class="text-xs font-bold text-[#1b2a4a]">
                                         Incluir Vacaciones Proporcionales de la fracción del año en curso (Art. 187 CT)
                                     </span>
                                 </label>
-                                <span id="lblBadgeFraccion" class="text-[11px] bg-blue-100 text-[#233876] px-2 py-0.5 rounded font-semibold">+0.00 días</span>
+                                <span id="lblBadgeFraccion"
+                                    class="text-[11px] bg-blue-100 text-[#233876] px-2 py-0.5 rounded font-semibold">+0.00
+                                    días</span>
                             </div>
                             <p class="text-xs text-gray-600 mt-1 leading-relaxed">
-                                El empleado laboró <strong id="lblDetalleFraccion">0 meses y 0 días</strong> posteriores a su último aniversario laboral. Corresponden <strong id="lblDiasFraccionTexto">0.00 días</strong> proporcionales adicionales por el tiempo trabajado en el año corriente (despido).
+                                El empleado laboró <strong id="lblDetalleFraccion">0 meses y 0 días</strong> posteriores
+                                a su último aniversario laboral. Corresponden <strong id="lblDiasFraccionTexto">0.00
+                                    días</strong> proporcionales adicionales por el tiempo trabajado en el año corriente
+                                (despido).
                             </p>
                         </div>
                     </div>
@@ -738,19 +874,23 @@
                 <!-- BLOQUE 4: Jornadas extraordinarias y asuetos del ÚLTIMO MES (Descanso semanal limitado a 4 días) -->
                 <div class="bloque-card rounded-lg p-5 transition-all duration-300" id="bloqueCardExtras">
                     <h3 class="text-base font-bold text-[#1b2a4a] mb-2 flex items-center">
-                        <span class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">4</span>
-                        Jornadas Extraordinarias y Asuetos del <span class="ml-1 bg-[#233876] text-white px-2 py-0.5 rounded text-xs">ÚLTIMO MES TRABAJADO</span>
+                        <span
+                            class="bg-[#1b2a4a] text-[#f7f6f2] rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2.5 font-bold">4</span>
+                        Jornadas Extraordinarias y Asuetos del <span
+                            class="ml-1 bg-[#233876] text-white px-2 py-0.5 rounded text-xs">ÚLTIMO MES TRABAJADO</span>
                     </h3>
 
                     <!-- Aviso de sección inhabilitada por omisión de preaviso -->
-                    <div id="avisoBloqueoExtras" class="hidden alert-danger p-3 rounded-lg mb-3 text-xs text-red-900 border border-red-300 font-semibold flex items-center space-x-2">
+                    <div id="avisoBloqueoExtras"
+                        class="hidden alert-danger p-3 rounded-lg mb-3 text-xs text-red-900 border border-red-300 font-semibold flex items-center space-x-2">
                         <i class="fas fa-lock text-red-600 text-sm"></i>
                         <span>Sección inhabilitada: por omisión de preaviso de 15 días en renuncia voluntaria.</span>
                     </div>
 
                     <p class="text-xs text-gray-600 mb-4">
                         <i class="fas fa-info-circle text-[#233876] mr-1"></i>
-                        Registre únicamente las horas extras y días de asueto laborados durante el <strong>último mes</strong> previo a la terminación.
+                        Registre únicamente las horas extras y días de asueto laborados durante el <strong>último
+                            mes</strong> previo a la terminación.
                     </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -774,27 +914,32 @@
 
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1">
-                            <i class="fas fa-calendar-check text-[#233876] mr-1"></i> Días de Asueto Laborados en el último mes
+                            <i class="fas fa-calendar-check text-[#233876] mr-1"></i> Días de Asueto Laborados en el
+                            último mes
                         </label>
-                        <p class="text-xs text-gray-600 mb-3">Marque únicamente los días de asueto que el trabajador efectivamente laboró durante su último mes:</p>
+                        <p class="text-xs text-gray-600 mb-3">Marque únicamente los días de asueto que el trabajador
+                            efectivamente laboró durante su último mes:</p>
                         <div id="listaAsuetos"
                             class="grid grid-cols-1 md:grid-cols-2 gap-2 border border-[#d1cdc2] rounded-lg p-3 bg-white max-h-80 overflow-y-auto">
                             <!-- Se llena dinámicamente -->
                         </div>
                         <p class="text-xs text-gray-600 mt-2">
                             <i class="fas fa-info-circle mr-1 text-[#233876]"></i>
-                            <strong>Total días marcados:</strong> <span id="totalAsuetosMarcados" class="font-bold text-[#1b2a4a]">0</span>
+                            <strong>Total días marcados:</strong> <span id="totalAsuetosMarcados"
+                                class="font-bold text-[#1b2a4a]">0</span>
                         </p>
                     </div>
 
                     <div class="mt-4">
                         <label class="block text-xs font-semibold text-gray-700 mb-1">
-                            <i class="fas fa-calendar-week text-[#233876] mr-1"></i> Días de Descanso Semanal Laborados (último mes)
+                            <i class="fas fa-calendar-week text-[#233876] mr-1"></i> Días de Descanso Semanal Laborados
+                            (último mes)
                         </label>
                         <input type="number" id="diasDescansoSemanal" min="0" max="4" value="0"
                             class="w-full md:w-1/3 px-3 py-2 bg-white border border-[#d1cdc2] rounded-md text-sm focus:ring-2 focus:ring-[#233876] outline-none">
                         <p class="text-xs text-gray-500 mt-1">
-                            <strong>Máximo 4 días:</strong> equivalente a las 4 semanas del mes laboral (1 descanso por semana) · Recargo 50% · Arts. 175 y 176 CT
+                            <strong>Máximo 4 días:</strong> equivalente a las 4 semanas del mes laboral (1 descanso por
+                            semana) · Recargo 50% · Arts. 175 y 176 CT
                         </p>
                     </div>
                 </div>
@@ -829,11 +974,14 @@
                     </div>
                     <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/10">
                         <p class="text-blue-200 text-xs font-light">Total Deducciones de Ley</p>
-                        <p class="text-2xl md:text-3xl font-bold text-rose-300 mt-1" id="totalDeduccionesPantalla">-$0.00</p>
+                        <p class="text-2xl md:text-3xl font-bold text-rose-300 mt-1" id="totalDeduccionesPantalla">
+                            -$0.00</p>
                     </div>
-                    <div class="bg-emerald-950/60 backdrop-blur-sm rounded-lg p-4 border border-emerald-400/40 shadow-inner">
+                    <div
+                        class="bg-emerald-950/60 backdrop-blur-sm rounded-lg p-4 border border-emerald-400/40 shadow-inner">
                         <p class="text-emerald-200 text-xs font-bold uppercase tracking-wider">Monto Neto a Pagar</p>
-                        <p class="text-2xl md:text-3xl font-extrabold text-emerald-300 mt-1" id="montoNetoPantalla">$0.00</p>
+                        <p class="text-2xl md:text-3xl font-extrabold text-emerald-300 mt-1" id="montoNetoPantalla">
+                            $0.00</p>
                     </div>
                     <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/10">
                         <p class="text-blue-200 text-xs font-light">Antigüedad y Causa</p>
@@ -844,7 +992,8 @@
                 <div id="alertTope"
                     class="hidden bg-blue-950/60 border-l-4 border-yellow-400 rounded p-3 mt-4 text-xs text-yellow-100">
                     <i class="fas fa-exclamation-triangle mr-2 text-yellow-300"></i>
-                    <strong>Tope Legal Art. 58 CT:</strong> Salario base para indemnización limitado a <strong>$1,635.20 por mes</strong> (4× el salario mínimo legal de referencia).
+                    <strong>Tope Legal Art. 58 CT:</strong> Salario base para indemnización limitado a <strong>$1,635.20
+                        por mes</strong> (4× el salario mínimo legal de referencia).
                 </div>
             </div>
 
@@ -906,42 +1055,49 @@
 
             <!-- STREAMING_CHUNK:Tarjeta de Descuentos de Ley en Pantalla -->
             <div class="card-hueso rounded-xl p-5 mb-8 border-l-4 border-rose-600 shadow-sm">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e2dfd5] pb-3 mb-4 gap-2">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#e2dfd5] pb-3 mb-4 gap-2">
                     <h3 class="text-base font-bold text-[#1b2a4a] flex items-center">
                         <i class="fas fa-file-invoice-dollar text-rose-600 mr-2 text-lg"></i>
                         Descuentos de Ley Obligatorios (Deducciones Legales)
                     </h3>
-                    <span class="text-xs font-bold text-rose-800 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full">
+                    <span
+                        class="text-xs font-bold text-rose-800 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full">
                         Total Deducciones: <span id="lblTotalDeduccionesDetalle">-$0.00</span>
                     </span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                     <div class="bg-white p-3.5 rounded-lg border border-[#d1cdc2]">
                         <div class="flex items-center justify-between mb-1">
-                            <span class="font-bold text-[#1b2a4a]"><i class="fas fa-hospital text-[#233876] mr-1"></i> ISSS (3.00%)</span>
+                            <span class="font-bold text-[#1b2a4a]"><i class="fas fa-hospital text-[#233876] mr-1"></i>
+                                ISSS (3.00%)</span>
                             <span class="text-rose-700 font-bold" id="descISSS">-$0.00</span>
                         </div>
                         <p class="text-gray-500">Tope legal: $1,000.00 (Cotización máx: $30.00)</p>
                     </div>
                     <div class="bg-white p-3.5 rounded-lg border border-[#d1cdc2]">
                         <div class="flex items-center justify-between mb-1">
-                            <span class="font-bold text-[#1b2a4a]"><i class="fas fa-piggy-bank text-[#233876] mr-1"></i> AFP (7.25%)</span>
+                            <span class="font-bold text-[#1b2a4a]"><i class="fas fa-piggy-bank text-[#233876] mr-1"></i>
+                                AFP (7.25%)</span>
                             <span class="text-rose-700 font-bold" id="descAFP">-$0.00</span>
                         </div>
                         <p class="text-gray-500">Fondo de Pensiones Ley SAP (sin tope)</p>
                     </div>
                     <div class="bg-white p-3.5 rounded-lg border border-[#d1cdc2]">
                         <div class="flex items-center justify-between mb-1">
-                            <span class="font-bold text-[#1b2a4a]"><i class="fas fa-receipt text-[#233876] mr-1"></i> Retención ISR</span>
+                            <span class="font-bold text-[#1b2a4a]"><i class="fas fa-receipt text-[#233876] mr-1"></i>
+                                Retención ISR</span>
                             <span class="text-rose-700 font-bold" id="descISR">-$0.00</span>
                         </div>
                         <p class="text-gray-500">Indemnización y Aguinaldo legal exentos de renta</p>
                     </div>
                 </div>
-                <div class="mt-4 p-3 bg-[#f0fdf4] border border-emerald-300 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div
+                    class="mt-4 p-3 bg-[#f0fdf4] border border-emerald-300 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <span class="text-xs text-emerald-900 font-medium">
                         <i class="fas fa-check-circle text-emerald-600 mr-1.5"></i>
-                        <strong>Monto Líquido a Recibir:</strong> Total Bruto (<span id="lblResumenBruto">$0.00</span>) menos Total Deducciones (<span id="lblResumenDeducciones">-$0.00</span>)
+                        <strong>Monto Líquido a Recibir:</strong> Total Bruto (<span id="lblResumenBruto">$0.00</span>)
+                        menos Total Deducciones (<span id="lblResumenDeducciones">-$0.00</span>)
                     </span>
                     <span class="text-base font-extrabold text-emerald-800" id="lblResumenNeto">$0.00 USD</span>
                 </div>
@@ -963,7 +1119,8 @@
                     <h2 class="text-lg md:text-xl font-bold text-[#1b2a4a] flex items-center">
                         <i class="fas fa-gavel text-[#233876] mr-2.5"></i> Vista Previa del Desglose Legal y Financiero
                     </h2>
-                    <button onclick="document.getElementById('desgloseLegal').classList.add('hidden')" class="text-xs text-gray-500 hover:text-gray-700">
+                    <button onclick="document.getElementById('desgloseLegal').classList.add('hidden')"
+                        class="text-xs text-gray-500 hover:text-gray-700">
                         <i class="fas fa-times mr-1"></i> Cerrar
                     </button>
                 </div>
@@ -996,22 +1153,26 @@
             </div>
             <p class="text-center text-xs text-gray-500 mt-3">
                 <i class="fas fa-info-circle mr-1"></i>
-                Haz clic en <strong>"Imprimir / Guardar como PDF"</strong> y en el diálogo del navegador selecciona la opción <strong>"Guardar como PDF"</strong>.
+                Haz clic en <strong>"Imprimir / Guardar como PDF"</strong> y en el diálogo del navegador selecciona la
+                opción <strong>"Guardar como PDF"</strong>.
             </p>
         </div>
 
         <!-- Pestaña informativa de Derechos Laborales y Panel de Fórmulas -->
         <div class="card-hueso rounded-xl p-6 mb-8 no-print shadow-sm">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between border-b border-[#e2dfd5] pb-4 mb-5 gap-3">
+            <div
+                class="flex flex-col lg:flex-row lg:items-center justify-between border-b border-[#e2dfd5] pb-4 mb-5 gap-3">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-[#233876] text-white flex items-center justify-center shadow-inner flex-shrink-0">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-[#233876] text-white flex items-center justify-center shadow-inner flex-shrink-0">
                         <i class="fas fa-book-bookmark text-base"></i>
                     </div>
                     <div>
                         <h2 class="text-lg md:text-xl font-bold text-[#1b2a4a]">
                             Conoce tus Derechos Laborales y Fórmulas de Cálculo
                         </h2>
-                        <p class="text-xs text-gray-500">Guía legal de referencia rápida y catálogo de fórmulas matemáticas según el Código de Trabajo de El Salvador</p>
+                        <p class="text-xs text-gray-500">Guía legal de referencia rápida y catálogo de fórmulas
+                            matemáticas según el Código de Trabajo de El Salvador</p>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-2.5">
@@ -1024,7 +1185,8 @@
                     <button type="button" onclick="togglePanelFormulas()" id="btnToggleFormulas"
                         class="text-xs font-bold text-white bg-[#233876] hover:bg-[#1a2b58] px-3.5 py-2 rounded-md border border-[#1b2a4a] flex items-center transition-all cursor-pointer shadow-sm">
                         <i class="fas fa-square-root-variable mr-2 text-blue-200"></i>
-                        <span id="txtToggleFormulas">Conoce todas las fórmulas utilizadas para calcular tus prestaciones laborales</span>
+                        <span id="txtToggleFormulas">Conoce todas las fórmulas utilizadas para calcular tus prestaciones
+                            laborales</span>
                         <i id="iconoToggleFormulas" class="fas fa-chevron-down ml-2 text-xs transition-transform"></i>
                     </button>
                 </div>
@@ -1035,13 +1197,17 @@
                 <!-- Tarjeta 1: Vacaciones -->
                 <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-l-4 border-l-[#233876]">
                     <h3 class="font-bold text-[#1b2a4a] mb-1.5 flex items-center">
-                        <i class="fas fa-umbrella-beach text-[#233876] mr-2"></i> Vacaciones Anuales (Arts. 177 y 187 CT)
+                        <i class="fas fa-umbrella-beach text-[#233876] mr-2"></i> Vacaciones Anuales (Arts. 177 y 187
+                        CT)
                     </h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Todo trabajador tiene derecho a <strong>15 días hábiles</strong> de vacación remunerada por cada año de trabajo continuo, con una prestación del <strong>salario de 15 días más un 30% de recargo legal</strong> (equivalente a 19.5 días de salario básico).
+                        Todo trabajador tiene derecho a <strong>15 días hábiles</strong> de vacación remunerada por cada
+                        año de trabajo continuo, con una prestación del <strong>salario de 15 días más un 30% de recargo
+                            legal</strong> (equivalente a 19.5 días de salario básico).
                     </p>
                     <p class="text-gray-600 mt-2 leading-relaxed">
-                        Si no ha gozado vacaciones al finalizar el contrato, se pagan completamente los 15 días (+ 30%). Si descansó parcialmente, se le liquidan los días adeudados con su recargo legal.
+                        Si no ha gozado vacaciones al finalizar el contrato, se pagan completamente los 15 días (+ 30%).
+                        Si descansó parcialmente, se le liquidan los días adeudados con su recargo legal.
                     </p>
                 </div>
 
@@ -1058,8 +1224,11 @@
                         <li><strong>3 a menos de 10 años de servicio:</strong> 19 días de salario.</li>
                         <li><strong>10 o más años de servicio:</strong> 21 días de salario.</li>
                     </ul>
-                    <p class="text-[#1b2a4a] font-medium mt-2 bg-[#eef2f8] p-2 rounded border border-[#cbd5e1] leading-relaxed">
-                        <i class="fas fa-calendar-check text-[#233876] mr-1"></i> A partir del <strong>1 de octubre</strong>, la liquidación contempla el pago del <strong>aguinaldo completo del año en curso</strong>.
+                    <p
+                        class="text-[#1b2a4a] font-medium mt-2 bg-[#eef2f8] p-2 rounded border border-[#cbd5e1] leading-relaxed">
+                        <i class="fas fa-calendar-check text-[#233876] mr-1"></i> A partir del <strong>1 de
+                            octubre</strong>, la liquidación contempla el pago del <strong>aguinaldo completo del año en
+                            curso</strong>.
                     </p>
                 </div>
 
@@ -1069,10 +1238,13 @@
                         <i class="fas fa-gavel text-[#233876] mr-2"></i> Indemnización por Despido (Art. 58 CT)
                     </h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Corresponde a <strong>30 días de salario básico</strong> por cada año de servicio continuo y proporcional por fracción de meses. La indemnización mínima en ningún caso puede ser menor al salario de 15 días.
+                        Corresponde a <strong>30 días de salario básico</strong> por cada año de servicio continuo y
+                        proporcional por fracción de meses. La indemnización mínima en ningún caso puede ser menor al
+                        salario de 15 días.
                     </p>
                     <p class="text-gray-700 mt-2 bg-[#fbfaf6] p-2 rounded border border-[#e2dfd5] leading-relaxed">
-                        <strong>Tope Legal Absoluto:</strong> Ningún salario devengado para el cálculo de indemnización puede ser superior a <strong>$1,635.20 por mes</strong> (4× salario mínimo de $408.80).
+                        <strong>Tope Legal Absoluto:</strong> Ningún salario devengado para el cálculo de indemnización
+                        puede ser superior a <strong>$1,635.20 por mes</strong> (4× salario mínimo de $408.80).
                     </p>
                 </div>
 
@@ -1082,10 +1254,13 @@
                         <i class="fas fa-handshake text-[#233876] mr-2"></i> Renuncia Voluntaria (Ley Reguladora 2014)
                     </h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Equivale a <strong>15 días de salario básico</strong> por año laborado y proporcional por meses (con tope máximo de 2× salario mínimo legal).
+                        Equivale a <strong>15 días de salario básico</strong> por año laborado y proporcional por meses
+                        (con tope máximo de 2× salario mínimo legal).
                     </p>
                     <p class="text-red-900 mt-2 bg-red-50 p-2 rounded border border-red-200 leading-relaxed">
-                        <strong>Requisito Obligatorio:</strong> Requiere un mínimo indispensable de <strong>2 años continuos de servicio</strong> en la empresa y preaviso por escrito (15 días para personal operativo, 30 días para cargos de jefatura o especializados).
+                        <strong>Requisito Obligatorio:</strong> Requiere un mínimo indispensable de <strong>2 años
+                            continuos de servicio</strong> en la empresa y preaviso por escrito (15 días para personal
+                        operativo, 30 días para cargos de jefatura o especializados).
                     </p>
                 </div>
             </div>
@@ -1096,157 +1271,231 @@
                     <i class="fas fa-calculator text-[#233876] text-xl mt-0.5 flex-shrink-0"></i>
                     <div>
                         <h3 class="text-base font-bold text-[#1b2a4a]">
-                            Catálogo Detallado de Fórmulas Matemáticas y Valores de Días (Código de Trabajo de El Salvador)
+                            Catálogo Detallado de Fórmulas Matemáticas y Valores de Días (Código de Trabajo de El
+                            Salvador)
                         </h3>
                         <p class="text-xs text-gray-700 mt-1 leading-relaxed">
-                            A continuación se detallan todas las fórmulas aplicadas por el sistema, los valores asignados a cada variable, el número de días que manda la ley y la explicación jurídica de lo que significa cada factor.
+                            A continuación se detallan todas las fórmulas aplicadas por el sistema, los valores
+                            asignados a cada variable, el número de días que manda la ley y la explicación jurídica de
+                            lo que significa cada factor.
                         </p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
                     <!-- F1: SBD y Salarios por Hora -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#1b2a4a]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#1b2a4a]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-dollar-sign text-[#233876] mr-2"></i> 1. Salario Básico Diario (SBD) y Horas Ordinarias
+                            <i class="fas fa-dollar-sign text-[#233876] mr-2"></i> 1. Salario Básico Diario (SBD) y
+                            Horas Ordinarias
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
                             <div>SBD = Salario Mensual Devengado ÷ 30</div>
                             <div>Valor Hora Diurna = SBD ÷ 8 horas</div>
                             <div>Valor Hora Nocturna = SBD ÷ 7 horas</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>¿Por qué 30 días?:</strong> El Art. 140 del Código de Trabajo estipula el mes comercial de 30 días. Al dividir el salario mensual entre 30, se obtiene el valor correspondiente a 1 día calendario, el cual ya remunera tanto las jornadas ordinarias como los descansos semanales.</li>
-                            <li>• <strong>¿Por qué 8 y 7 horas?:</strong> El Art. 161 CT fija la jornada ordinaria máxima diurna en 8 horas al día y la jornada ordinaria nocturna en 7 horas.</li>
+                            <li>• <strong>¿Por qué 30 días?:</strong> El Art. 140 del Código de Trabajo estipula el mes
+                                comercial de 30 días. Al dividir el salario mensual entre 30, se obtiene el valor
+                                correspondiente a 1 día calendario, el cual ya remunera tanto las jornadas ordinarias
+                                como los descansos semanales.</li>
+                            <li>• <strong>¿Por qué 8 y 7 horas?:</strong> El Art. 161 CT fija la jornada ordinaria
+                                máxima diurna en 8 horas al día y la jornada ordinaria nocturna en 7 horas.</li>
                         </ul>
                     </div>
 
                     <!-- F2: Indemnización Despido Art. 58 -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#233876]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#233876]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-gavel text-[#233876] mr-2"></i> 2. Indemnización por Despido Injustificado (Art. 58 CT)
+                            <i class="fas fa-gavel text-[#233876] mr-2"></i> 2. Indemnización por Despido Injustificado
+                            (Art. 58 CT)
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
-                            <div>Total Indemnización = (SBDi × 30 × Años) + (SBDi × 30 × Meses ÷ 12) + (SBDi × 30 × Días ÷ 360)</div>
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                            <div>Total Indemnización = (SBDi × 30 × Años) + (SBDi × 30 × Meses ÷ 12) + (SBDi × 30 × Días
+                                ÷ 360)</div>
                             <div>Tope Legal Art. 58 CT = 4 × Salario Mínimo Legal (SML)</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>30 días de salario:</strong> La ley confiere un mes completo de remuneración por cada año de trabajo ininterrumpido.</li>
-                            <li>• <strong>Fracción proporcional:</strong> Para los meses y días trabajados que no completen un año, se calcula la parte proporcional (meses entre 12 y días entre 360).</li>
-                            <li>• <strong>Tope de 4× SML:</strong> Si el salario mensual supera 4 salarios mínimos vigentes del sector ($408.80 × 4 = $1,635.20), el cálculo de la indemnización se realiza topado a $1,635.20 mensuales.</li>
+                            <li>• <strong>30 días de salario:</strong> La ley confiere un mes completo de remuneración
+                                por cada año de trabajo ininterrumpido.</li>
+                            <li>• <strong>Fracción proporcional:</strong> Para los meses y días trabajados que no
+                                completen un año, se calcula la parte proporcional (meses entre 12 y días entre 360).
+                            </li>
+                            <li>• <strong>Tope de 4× SML:</strong> Si el salario mensual supera 4 salarios mínimos
+                                vigentes del sector ($408.80 × 4 = $1,635.20), el cálculo de la indemnización se realiza
+                                topado a $1,635.20 mensuales.</li>
                         </ul>
                     </div>
 
                     <!-- F3: Vacaciones Anuales Cumplidas Art. 177 -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#2d487d]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#2d487d]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-umbrella-beach text-[#233876] mr-2"></i> 3. Vacaciones Anuales de Año Cumplido (Art. 177 CT)
+                            <i class="fas fa-umbrella-beach text-[#233876] mr-2"></i> 3. Vacaciones Anuales de Año
+                            Cumplido (Art. 177 CT)
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
                             <div>Vacación Completa = 15 días × SBD × 1.30 = 19.5 días de salario básico</div>
                             <div>Vacación Parcial Adeudada = Días adeudados × SBD × 1.30</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>15 días hábiles:</strong> Período de descanso obligatorio al que tiene derecho todo trabajador tras cumplir un año de servicio continuo en la empresa.</li>
-                            <li>• <strong>Factor 1.30 (+30% de recargo):</strong> El Art. 177 CT exige que el patrono pague el salario ordinario de los 15 días aumentado con una prima o recargo legal del 30%, equivalente al pago total de 19.5 días de salario básico diario.</li>
+                            <li>• <strong>15 días hábiles:</strong> Período de descanso obligatorio al que tiene derecho
+                                todo trabajador tras cumplir un año de servicio continuo en la empresa.</li>
+                            <li>• <strong>Factor 1.30 (+30% de recargo):</strong> El Art. 177 CT exige que el patrono
+                                pague el salario ordinario de los 15 días aumentado con una prima o recargo legal del
+                                30%, equivalente al pago total de 19.5 días de salario básico diario.</li>
                         </ul>
                     </div>
 
                     <!-- F4: Vacaciones Proporcionales Art. 187 -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#3b5998]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#3b5998]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-calculator text-[#233876] mr-2"></i> 4. Vacaciones Proporcionales (Art. 187 CT)
+                            <i class="fas fa-calculator text-[#233876] mr-2"></i> 4. Vacaciones Proporcionales (Art. 187
+                            CT)
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
                             <div>Días Proporcionales = (Meses × 15 ÷ 12) + (Días × 15 ÷ 360)</div>
                             <div>Monto Vacación Prop. = Días Proporcionales × SBD × 1.30</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>Tasa mensual de 1.25 días:</strong> Al dividir 15 días entre 12 meses, se devengan exactamente <strong>1.25 días de vacación por cada mes</strong> laborado.</li>
-                            <li>• <strong>Tasa diaria de 0.04167 días:</strong> Al dividir 15 días entre 360 días del año comercial, se devengan <strong>0.04167 días por cada día</strong> laborado en fracciones.</li>
-                            <li>• <strong>Ámbito de aplicación:</strong> Aplica automáticamente en despido cuando el empleado no completó el año, o para la fracción del año en curso en caso de despido posterior al aniversario.</li>
+                            <li>• <strong>Tasa mensual de 1.25 días:</strong> Al dividir 15 días entre 12 meses, se
+                                devengan exactamente <strong>1.25 días de vacación por cada mes</strong> laborado.</li>
+                            <li>• <strong>Tasa diaria de 0.04167 días:</strong> Al dividir 15 días entre 360 días del
+                                año comercial, se devengan <strong>0.04167 días por cada día</strong> laborado en
+                                fracciones.</li>
+                            <li>• <strong>Ámbito de aplicación:</strong> Aplica automáticamente en despido cuando el
+                                empleado no completó el año, o para la fracción del año en curso en caso de despido
+                                posterior al aniversario.</li>
                         </ul>
                     </div>
 
                     <!-- F5: Aguinaldo Legal Arts. 196-202 -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#283e68]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#283e68]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-gift text-[#233876] mr-2"></i> 5. Aguinaldo Legal Navideño (Arts. 196 a 202 CT)
+                            <i class="fas fa-gift text-[#233876] mr-2"></i> 5. Aguinaldo Legal Navideño (Arts. 196 a 202
+                            CT)
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
                             <div>Aguinaldo Completo = Días según Antigüedad × SBD</div>
-                            <div>Aguinaldo Proporcional = (Días según Antigüedad × Meses laborados en el año ÷ 12) × SBD</div>
+                            <div>Aguinaldo Proporcional = (Días según Antigüedad × Meses laborados en el año ÷ 12) × SBD
+                            </div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
                             <li>• <strong>Escala legal obligatoria (Art. 198 CT):</strong>
-                                <span class="block ml-2 text-[#1b2a4a] font-semibold">1 a menos de 3 años de servicio → 15 días de salario</span>
-                                <span class="block ml-2 text-[#1b2a4a] font-semibold">3 a menos de 10 años de servicio → 19 días de salario</span>
-                                <span class="block ml-2 text-[#1b2a4a] font-semibold">10 o más años de servicio → 21 días de salario</span>
+                                <span class="block ml-2 text-[#1b2a4a] font-semibold">1 a menos de 3 años de servicio →
+                                    15 días de salario</span>
+                                <span class="block ml-2 text-[#1b2a4a] font-semibold">3 a menos de 10 años de servicio →
+                                    19 días de salario</span>
+                                <span class="block ml-2 text-[#1b2a4a] font-semibold">10 o más años de servicio → 21
+                                    días de salario</span>
                             </li>
-                            <li>• <strong>Regla del 1 de Octubre (Art. 202 CT):</strong> Si el despido o terminación ocurre entre el 1 de octubre y el 31 de diciembre, la ley manda a pagar el <strong>100% del aguinaldo del año en curso</strong>, sin deducción proporcional por meses.</li>
+                            <li>• <strong>Regla del 1 de Octubre (Art. 202 CT):</strong> Si el despido o terminación
+                                ocurre entre el 1 de octubre y el 31 de diciembre, la ley manda a pagar el <strong>100%
+                                    del aguinaldo del año en curso</strong>, sin deducción proporcional por meses.</li>
                         </ul>
                     </div>
 
                     <!-- F6: Compensación Renuncia Voluntaria D.L. 592 -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#233876]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#233876]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-handshake text-[#233876] mr-2"></i> 6. Compensación por Renuncia Voluntaria (Ley D.L. 592)
+                            <i class="fas fa-handshake text-[#233876] mr-2"></i> 6. Compensación por Renuncia Voluntaria
+                            (Ley D.L. 592)
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
                             <div>Compensación = (SBD × 15 × Años) + (SBD × 15 × Meses ÷ 12)</div>
                             <div>Tope Legal por Año = 2 × Salario Mínimo Legal Mensual</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>15 días por año:</strong> Representa la mitad de la indemnización por despido.</li>
-                            <li>• <strong>Requisito de 2 años:</strong> El trabajador debe tener 2 años o más de servicio continuo con el mismo patrono para tener derecho económico a esta prestación.</li>
-                            <li>• <strong>Preaviso obligatorio de 15 días (Art. 3 D.L. 592):</strong> Debe notificarse por escrito al patrono con al menos 15 días de anticipación (o 30 días en cargos de jefatura o especializados). <strong>La omisión del preaviso legal inhabilita y anula el derecho a esta prestación.</strong></li>
+                            <li>• <strong>15 días por año:</strong> Representa la mitad de la indemnización por despido.
+                            </li>
+                            <li>• <strong>Requisito de 2 años:</strong> El trabajador debe tener 2 años o más de
+                                servicio continuo con el mismo patrono para tener derecho económico a esta prestación.
+                            </li>
+                            <li>• <strong>Preaviso obligatorio de 15 días (Art. 3 D.L. 592):</strong> Debe notificarse
+                                por escrito al patrono con al menos 15 días de anticipación (o 30 días en cargos de
+                                jefatura o especializados). <strong>La omisión del preaviso legal inhabilita y anula el
+                                    derecho a esta prestación.</strong></li>
                         </ul>
                     </div>
 
                     <!-- F7: Horas Extras Diurnas y Nocturnas Arts. 168-169 -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#1b2a4a]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#1b2a4a]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-clock text-[#233876] mr-2"></i> 7. Horas Extras Diurnas y Nocturnas (Arts. 168 y 169 CT)
+                            <i class="fas fa-clock text-[#233876] mr-2"></i> 7. Horas Extras Diurnas y Nocturnas (Arts.
+                            168 y 169 CT)
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
                             <div>Monto Extra Diurna = Horas Diurnas × (SBD ÷ 8) × 2.00 (Recargo 100%)</div>
-                            <div>Monto Extra Nocturna = Horas Nocturnas × (SBD ÷ 8) × 1.25 × 2.00 (Recargo 150% = factor 2.50)</div>
+                            <div>Monto Extra Nocturna = Horas Nocturnas × (SBD ÷ 8) × 1.25 × 2.00 (Recargo 150% = factor
+                                2.50)</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>Recargo extraordinario del 100%:</strong> La jornada extraordinaria diurna se paga con un recargo del 100% sobre la hora ordinaria (se cancela al doble).</li>
-                            <li>• <strong>Nocturnidad (+25%):</strong> Las horas nocturnas reciben primero el 25% de recargo por nocturnidad (Art. 168 CT) y sobre esa base se aplica el 100% adicional extraordinario (Art. 169 CT), resultando en un multiplicador total de 2.50.</li>
+                            <li>• <strong>Recargo extraordinario del 100%:</strong> La jornada extraordinaria diurna se
+                                paga con un recargo del 100% sobre la hora ordinaria (se cancela al doble).</li>
+                            <li>• <strong>Nocturnidad (+25%):</strong> Las horas nocturnas reciben primero el 25% de
+                                recargo por nocturnidad (Art. 168 CT) y sobre esa base se aplica el 100% adicional
+                                extraordinario (Art. 169 CT), resultando en un multiplicador total de 2.50.</li>
                         </ul>
                     </div>
 
                     <!-- F8: Asuetos y Descansos Semanales -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#233876]">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-[#233876]">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-calendar-alt text-[#233876] mr-2"></i> 8. Asuetos y Descansos Semanales Laborados (Arts. 175 y 192 CT)
+                            <i class="fas fa-calendar-alt text-[#233876] mr-2"></i> 8. Asuetos y Descansos Semanales
+                            Laborados (Arts. 175 y 192 CT)
                         </h4>
-                        <div class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
+                        <div
+                            class="bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] space-y-1 mb-2 font-semibold">
                             <div>Monto Día de Asueto = Días Asueto × SBD × 2.00 (Pago Doble)</div>
                             <div>Monto Descanso Semanal = Días Descanso × SBD × 1.50 (Recargo 50%)</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>Día de asueto laborado:</strong> El día feriado es de asueto pagado por ley. Si se labora, se remunera el salario ordinario del día más un recargo del 100% adicional (recibe pago doble).</li>
-                            <li>• <strong>Descanso semanal laborado (máx. 4 días):</strong> Se remunera con el salario básico más un recargo del 50%. Solo se permite liquidar hasta 4 descansos al mes (uno por cada semana del ciclo laboral).</li>
+                            <li>• <strong>Día de asueto laborado:</strong> El día feriado es de asueto pagado por ley.
+                                Si se labora, se remunera el salario ordinario del día más un recargo del 100% adicional
+                                (recibe pago doble).</li>
+                            <li>• <strong>Descanso semanal laborado (máx. 4 días):</strong> Se remunera con el salario
+                                básico más un recargo del 50%. Solo se permite liquidar hasta 4 descansos al mes (uno
+                                por cada semana del ciclo laboral).</li>
                         </ul>
                     </div>
 
                     <!-- F9: Deducciones Legales ISSS, AFP, ISR -->
-                    <div class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-rose-600 md:col-span-2">
+                    <div
+                        class="bg-white border border-[#d1cdc2] rounded-lg p-4 shadow-sm border-t-4 border-t-rose-600 md:col-span-2">
                         <h4 class="font-bold text-[#1b2a4a] text-sm mb-2 flex items-center">
-                            <i class="fas fa-file-invoice-dollar text-rose-600 mr-2"></i> 9. Deducciones Legales Obligatorias (ISSS, AFP y Retención ISR)
+                            <i class="fas fa-file-invoice-dollar text-rose-600 mr-2"></i> 9. Deducciones Legales
+                            Obligatorias (ISSS, AFP y Retención ISR)
                         </h4>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] mb-2 font-semibold">
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-3 gap-3 bg-[#f8fafc] border border-[#cbd5e1] p-2.5 rounded font-mono text-xs text-[#1b2a4a] mb-2 font-semibold">
                             <div>ISSS = min(Remuneración Gravada, $1,000.00) × 3.00% (Tope máx: $30.00)</div>
                             <div>AFP = Remuneración Gravada × 7.25% (Sin tope según Ley SAP)</div>
                             <div>Base Imponible ISR = Remuneración Gravada - ISSS - AFP</div>
                         </div>
                         <ul class="text-gray-600 space-y-1 leading-relaxed">
-                            <li>• <strong>Remuneraciones Gravadas:</strong> Vacaciones liquidadas, horas extras, asuetos y descansos semanales están afectos a cotizaciones del Seguro Social (3%) y Fondo de Pensiones (7.25%).</li>
-                            <li>• <strong>Exención Legal Absoluta de Indemnización y Aguinaldo:</strong> Conforme al Código de Trabajo y a la Ley de Impuesto sobre la Renta (Arts. 4 y 29), la <strong>indemnización por despido injustificado</strong> y el <strong>aguinaldo legal</strong> están 100% exentos de retención de renta, ISSS y AFP.</li>
-                            <li>• <strong>Monto Líquido a Pagar:</strong> Total Devengado Bruto menos la suma total de deducciones de ley retenidas.</li>
+                            <li>• <strong>Remuneraciones Gravadas:</strong> Vacaciones liquidadas, horas extras, asuetos
+                                y descansos semanales están afectos a cotizaciones del Seguro Social (3%) y Fondo de
+                                Pensiones (7.25%).</li>
+                            <li>• <strong>Exención Legal Absoluta de Indemnización y Aguinaldo:</strong> Conforme al
+                                Código de Trabajo y a la Ley de Impuesto sobre la Renta (Arts. 4 y 29), la
+                                <strong>indemnización por despido injustificado</strong> y el <strong>aguinaldo
+                                    legal</strong> están 100% exentos de retención de renta, ISSS y AFP.</li>
+                            <li>• <strong>Monto Líquido a Pagar:</strong> Total Devengado Bruto menos la suma total de
+                                deducciones de ley retenidas.</li>
                         </ul>
                     </div>
                 </div>
@@ -1260,7 +1509,8 @@
                 <i class="fas fa-shield-alt mr-2 text-blue-300"></i>
                 Calculadora Jurídico-Laboral orientada al Código de Trabajo de la República de El Salvador.
             </p>
-            <p class="text-[11px] text-blue-300/60 mt-1">Cálculo de Prestaciones Laborales · Código de Trabajo de El Salvador · Salario Mínimo Legal Referencial: $408.80</p>
+            <p class="text-[11px] text-blue-300/60 mt-1">Cálculo de Prestaciones Laborales · Código de Trabajo de El
+                Salvador · Salario Mínimo Legal Referencial: $408.80</p>
         </div>
     </footer>
 
@@ -1431,6 +1681,7 @@
                 divAnt.classList.remove('text-red-600');
                 if (alertRen) alertRen.classList.add('hidden');
                 if (alertRenOk) alertRenOk.classList.add('hidden');
+                validarRestriccionAntiguedad();
                 actualizarValidacionPreaviso();
                 actualizarRegimenVacaciones();
                 return;
@@ -1438,6 +1689,7 @@
 
             if (!fechaTerm) {
                 divAnt.textContent = 'Ingrese la fecha de salida';
+                validarRestriccionAntiguedad();
                 actualizarValidacionPreaviso();
                 actualizarRegimenVacaciones();
                 return;
@@ -1477,7 +1729,8 @@
                 if (alertRenOk) alertRenOk.classList.add('hidden');
             }
 
-            // Actualizar preaviso, régimen de vacaciones y lista de asuetos
+            // Actualizar restricción de antigüedad, preaviso, régimen de vacaciones y lista de asuetos
+            validarRestriccionAntiguedad();
             actualizarValidacionPreaviso();
             actualizarRegimenVacaciones();
             actualizarListaAsuetos();
@@ -1645,6 +1898,86 @@
                     }
                     btn.removeAttribute('title');
                 });
+            }
+        }
+
+        // ============================================================
+        // Validación de Restricción por Antigüedad < 2 años
+        // Solo permite Despido Injustificado si el trabajador tiene menos de 2 años
+        // ============================================================
+        function validarRestriccionAntiguedad() {
+            const fechaIng = document.getElementById('fechaIngreso').value;
+            const fechaTerm = document.getElementById('fechaTerminacion').value;
+
+            const alertaAntiguedad = document.getElementById('alertaAntiguedadInsuficiente');
+            const txtAntig = document.getElementById('txtAntiguedadRestriccion');
+            const radioRenuncia = document.getElementById('radioRenuncia');
+            const radioDespido = document.getElementById('radioDespido');
+            const labelRenuncia = document.getElementById('labelRenuncia');
+            const todosBotonesSiguientes = document.querySelectorAll('#btnCalcular, #resultados button');
+            const btnCalcular = document.getElementById('btnCalcular');
+
+            // Si no hay fechas válidas, no aplicar restricción
+            if (!fechaIng || !fechaTerm) {
+                if (alertaAntiguedad) alertaAntiguedad.classList.add('hidden');
+                if (labelRenuncia) {
+                    labelRenuncia.classList.remove('opacity-40', 'pointer-events-none', 'select-none');
+                    if (radioRenuncia) radioRenuncia.disabled = false;
+                }
+                return;
+            }
+
+            const dIng = new Date(fechaIng + 'T12:00:00');
+            const dTerm = new Date(fechaTerm + 'T12:00:00');
+
+            if (dTerm <= dIng) {
+                if (alertaAntiguedad) alertaAntiguedad.classList.add('hidden');
+                return;
+            }
+
+            const ant = calcularAntiguedad(fechaIng, fechaTerm);
+            const tieneDosoMasAnios = ant.años >= 2;
+
+            if (!tieneDosoMasAnios) {
+                // --- RESTRICCIÓN ACTIVA: Menos de 2 años ---
+                if (alertaAntiguedad) {
+                    alertaAntiguedad.classList.remove('hidden');
+                }
+                if (txtAntig) {
+                    const textoAntig = ant.años === 0
+                        ? `${ant.meses} mes${ant.meses !== 1 ? 'es' : ''} y ${ant.dias} día${ant.dias !== 1 ? 's' : ''} de antigüedad (menos de 2 años)`
+                        : `${ant.años} año${ant.años !== 1 ? 's' : ''}, ${ant.meses} mes${ant.meses !== 1 ? 'es' : ''} de antigüedad (menos de 2 años)`;
+                    txtAntig.textContent = textoAntig;
+                }
+
+                // Forzar selección a Despido Injustificado
+                if (radioDespido && !radioDespido.checked) {
+                    radioDespido.checked = true;
+                    // Disparar el evento para actualizar estilos visuales
+                    radioDespido.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+
+                // Inhabilitar label y radio de Renuncia
+                if (labelRenuncia) {
+                    labelRenuncia.classList.add('opacity-40', 'pointer-events-none', 'select-none');
+                    labelRenuncia.title = 'Inhabilitado: la antigüedad es menor a 2 años. Solo aplica Despido Injustificado.';
+                }
+                if (radioRenuncia) {
+                    radioRenuncia.disabled = true;
+                }
+
+            } else {
+                // --- RESTRICCIÓN INACTIVA: 2 o más años ---
+                if (alertaAntiguedad) alertaAntiguedad.classList.add('hidden');
+
+                // Habilitar Renuncia
+                if (labelRenuncia) {
+                    labelRenuncia.classList.remove('opacity-40', 'pointer-events-none', 'select-none');
+                    labelRenuncia.removeAttribute('title');
+                }
+                if (radioRenuncia) {
+                    radioRenuncia.disabled = false;
+                }
             }
         }
 
@@ -1958,7 +2291,7 @@
             // Fechas: entrada vacía y salida fecha actual
             const fechaIng = document.getElementById('fechaIngreso');
             if (fechaIng) fechaIng.value = '';
-            
+
             const hoy = new Date();
             const yyyy = hoy.getFullYear();
             const mm = String(hoy.getMonth() + 1).padStart(2, '0');
@@ -2038,6 +2371,7 @@
 
             // Actualizar todos los estados dinámicos
             actualizarModoAnonimo();
+            validarRestriccionAntiguedad();
             actualizarAntiguedadYValidar();
             actualizarValidacionPreaviso();
             actualizarRegimenVacaciones();
@@ -2127,7 +2461,7 @@
             e.preventDefault();
 
             const causa = document.querySelector('input[name="causaTerminacion"]:checked')?.value;
-            
+
             // Validación estricta de renuncia y preaviso: si es NO, se bloquea por completo la ejecución
             let preaviso = 'si';
             if (causa === 'renuncia') {
@@ -2179,7 +2513,7 @@
             const vacGoz = document.querySelector('input[name="vacacionesGozadas"]:checked')?.value;
             const heDiurnas = parseInt(document.getElementById('horasExtrasDiurnas').value) || 0;
             const heNocturnas = parseInt(document.getElementById('horasExtrasNocturnas').value) || 0;
-            
+
             // Días de descanso semanal: validación con tope máximo de 4 días (4 semanas del mes)
             let diasDescanso = parseInt(document.getElementById('diasDescansoSemanal').value) || 0;
             if (diasDescanso < 0) diasDescanso = 0;
@@ -2194,20 +2528,20 @@
             const diasAsueto = asuetosMarcados.length;
 
             // Validaciones de fechas y salario
-            if (!fechaIngreso) { 
+            if (!fechaIngreso) {
                 alert('Por favor ingrese la fecha de entrada del trabajador.');
                 document.getElementById('fechaIngreso').focus();
-                return; 
+                return;
             }
-            if (!fechaTerminacion) { 
+            if (!fechaTerminacion) {
                 alert('Por favor ingrese la fecha de salida.');
                 document.getElementById('fechaTerminacion').focus();
-                return; 
+                return;
             }
             const dIng = new Date(fechaIngreso + 'T12:00:00');
             const dTerm = new Date(fechaTerminacion + 'T12:00:00');
             if (dTerm <= dIng) { alert('La fecha de salida debe ser posterior a la fecha de entrada.'); return; }
-            
+
             if (isNaN(salarioMensual) || salarioMensual <= 0) {
                 alert('Por favor ingrese un salario mensual devengado válido mayor a $0.00.');
                 document.getElementById('salarioMensual').focus();
@@ -2375,7 +2709,7 @@
             document.getElementById('montoNetoPantalla').textContent = fmt(montoNeto);
             document.getElementById('antiguedad').textContent = `${anosLaborados} años, ${mesesLaborados} meses, ${diasLaborados} días`;
             document.getElementById('causaTexto').textContent = causaTxt;
-            
+
             document.getElementById('vacacionesMonto').textContent = fmt(vacProp);
             document.getElementById('vacacionesDetalle').textContent = vacDet;
             document.getElementById('aguinaldoMonto').textContent = fmt(agProp);
@@ -2477,10 +2811,10 @@
                         <tr>
                             <td>
                                 ${d.esCasoB ?
-                                  `Vacaciones proporcionales por año no cumplido (${d.diasVacacion.toFixed(2)} días por ${d.mesesLaborados}m, ${d.diasLaborados}d laborados + 30% recargo)` :
-                                  (d.vacGoz === 'no' ? 'Vacaciones anuales de año cumplido no gozadas (15 días + 30% recargo)' :
-                                   d.vacGoz === 'completas' ? 'Vacaciones anuales de año cumplido (gozadas en su totalidad)' :
-                                   'Vacaciones anuales parciales adeudadas (' + d.diasVacacion.toFixed(2) + ' días + 30% recargo)')}
+                    `Vacaciones proporcionales por año no cumplido (${d.diasVacacion.toFixed(2)} días por ${d.mesesLaborados}m, ${d.diasLaborados}d laborados + 30% recargo)` :
+                    (d.vacGoz === 'no' ? 'Vacaciones anuales de año cumplido no gozadas (15 días + 30% recargo)' :
+                        d.vacGoz === 'completas' ? 'Vacaciones anuales de año cumplido (gozadas en su totalidad)' :
+                            'Vacaciones anuales parciales adeudadas (' + d.diasVacacion.toFixed(2) + ' días + 30% recargo)')}
                             </td>
                             <td>${d.esCasoB ? 'Art. 187 CT' : 'Arts. 177 y 187 CT'}</td>
                             <td style="text-align:right;">${fmt(d.vacProp)}</td>
