@@ -1784,6 +1784,7 @@
                 const esPosterior = dAsueto > dTerm;
                 const fechaFormateada = String(dAsueto.getDate()).padStart(2, '0') + '/' +
                     String(dAsueto.getMonth() + 1).padStart(2, '0') + '/' + dAsueto.getFullYear();
+                const safeId = a.id.replace(/[^a-zA-Z0-9_]/g, '_');
 
                 if (esPosterior) {
                     return `
@@ -1805,13 +1806,49 @@
                 }
 
                 return `
-                    <div class="asueto-item flex items-center p-2 border border-gray-200 rounded-lg cursor-pointer">
-                        <input type="checkbox" id="asueto_${a.id}" value="${a.fecha}" class="mr-3 w-4 h-4 text-[#233876]" onchange="actualizarContadorAsuetos()">
-                        <label for="asueto_${a.id}" class="flex-1 cursor-pointer text-xs text-gray-700">
-                            <span class="check-icon text-green-600 mr-1">✓</span>
-                            ${a.nombre}
-                            ${a.local ? `<span class="ml-1 text-xs bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-medium">${a.local}</span>` : ''}
-                        </label>
+                    <div class="asueto-item flex flex-col p-2 border border-gray-200 rounded-lg gap-1.5">
+                        <div class="flex items-center cursor-pointer">
+                            <input type="checkbox" id="asueto_${safeId}" value="${a.fecha}"
+                                class="mr-3 w-4 h-4 text-[#233876] flex-shrink-0"
+                                onchange="toggleDiaLibrePanel('${safeId}')">
+                            <label for="asueto_${safeId}" class="flex-1 cursor-pointer text-xs text-gray-700">
+                                <span class="check-icon text-green-600 mr-1">✓</span>
+                                ${a.nombre}
+                                ${a.local ? `<span class="ml-1 text-xs bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-medium">${a.local}</span>` : ''}
+                            </label>
+                        </div>
+                        <!-- Panel condicional: ¿Era día libre? (visible solo al marcar) -->
+                        <div id="panel_libre_${safeId}" class="hidden ml-7 mt-0.5 p-2.5 rounded-lg bg-[#f0f4fa] border border-[#233876]/30">
+                            <p class="text-[11px] font-semibold text-[#1b2a4a] mb-2 flex items-center gap-1">
+                                <i class="fas fa-question-circle text-[#233876]"></i>
+                                ¿Este día de asueto coincidía con su día de descanso semanal (día libre)?
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-2">
+                                <label class="flex items-center gap-2 p-2 border-2 border-[#d1cdc2] bg-white rounded-lg cursor-pointer hover:border-emerald-500 transition-all text-[11px] font-semibold">
+                                    <input type="radio" name="libre_${safeId}" value="no" checked
+                                        class="w-3.5 h-3.5 text-[#233876]" onchange="actualizarContadorAsuetos()">
+                                    <span class="text-gray-700">
+                                        <i class="fas fa-briefcase text-[#233876] mr-0.5"></i>
+                                        No — Era día laboral ordinario
+                                    </span>
+                                    <span class="ml-auto text-[10px] text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-full">× 2.0 SBD</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2 border-2 border-[#d1cdc2] bg-white rounded-lg cursor-pointer hover:border-amber-500 transition-all text-[11px] font-semibold">
+                                    <input type="radio" name="libre_${safeId}" value="si"
+                                        class="w-3.5 h-3.5 text-amber-600" onchange="actualizarContadorAsuetos()">
+                                    <span class="text-gray-700">
+                                        <i class="fas fa-bed text-amber-500 mr-0.5"></i>
+                                        Sí — También era su día de descanso
+                                    </span>
+                                    <span class="ml-auto text-[10px] text-amber-700 font-bold bg-amber-50 border border-amber-300 px-1.5 py-0.5 rounded-full">× 2.5 SBD</span>
+                                </label>
+                            </div>
+                            <p class="text-[10px] text-gray-500 mt-1.5 leading-relaxed">
+                                <i class="fas fa-info-circle text-[#233876] mr-1"></i>
+                                Si trabajó en su día libre <strong>y</strong> era asueto: recibe pago doble (asueto ×2) <strong>más</strong> el 50% de recargo por descanso semanal (Arts. 175, 192 CT).
+                                En ese caso, <strong>no lo cuente nuevamente</strong> en «Días de Descanso Semanal».
+                            </p>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -1824,6 +1861,24 @@
         function actualizarContadorAsuetos() {
             const checks = document.querySelectorAll('#listaAsuetos input[type="checkbox"]:checked');
             document.getElementById('totalAsuetosMarcados').textContent = checks.length;
+        }
+
+        // ============================================================
+        // Mostrar/ocultar panel de pregunta "día libre" al marcar asueto
+        // ============================================================
+        function toggleDiaLibrePanel(safeId) {
+            const cb = document.getElementById('asueto_' + safeId);
+            const panel = document.getElementById('panel_libre_' + safeId);
+            if (!cb || !panel) return;
+            if (cb.checked) {
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+                // Resetear radio a "no" (día laboral ordinario) al desmarcar
+                const radioNo = panel.querySelector('input[type="radio"][value="no"]');
+                if (radioNo) radioNo.checked = true;
+            }
+            actualizarContadorAsuetos();
         }
 
         // ============================================================
@@ -2709,9 +2764,24 @@
                 document.getElementById('diasDescansoSemanal').value = 4;
             }
 
-            // Contar asuetos marcados
-            const asuetosMarcados = Array.from(document.querySelectorAll('#listaAsuetos input[type="checkbox"]:checked')).map(c => c.value);
-            const diasAsueto = asuetosMarcados.length;
+            // Contar asuetos marcados y clasificarlos por tipo
+            // Tres casos según Art. 192 CT + Art. 175 CT:
+            //  - No marcado: no laboró el asueto (no genera recargo extra)
+            //  - Marcado + día laboral ordinario: × 2.0 SBD
+            //  - Marcado + era día de descanso semanal: × 2.5 SBD (asueto 2× + descanso 0.5×)
+            let diasAsueto_normal = 0;   // × 2.0
+            let diasAsueto_libre = 0;   // × 2.5
+            document.querySelectorAll('#listaAsuetos input[type="checkbox"]:checked').forEach(cb => {
+                // Extraer el safeId del checkbox (formato: asueto_<safeId>)
+                const safeId = cb.id.replace(/^asueto_/, '');
+                const radioLibre = document.querySelector(`input[name="libre_${safeId}"]:checked`);
+                if (radioLibre && radioLibre.value === 'si') {
+                    diasAsueto_libre++;
+                } else {
+                    diasAsueto_normal++;
+                }
+            });
+            const diasAsueto = diasAsueto_normal + diasAsueto_libre;
 
             // Validaciones de fechas y salario
             if (!fechaIngreso) {
@@ -2860,7 +2930,9 @@
             const heD = vhd * heDiurnas * 2;
             const vhn = vhd * 1.25;
             const heN = vhn * heNocturnas * 2;
-            const asu = SBD * diasAsueto * 2;
+            // Asueto laborado (día ordinario): 2.0 × SBD
+            // Asueto laborado (día de descanso): 2.5 × SBD (2× asueto + 0.5× descanso, Arts. 175+192 CT)
+            const asu = (SBD * diasAsueto_normal * 2.0) + (SBD * diasAsueto_libre * 2.5);
             const dds = SBD * diasDescanso * 1.5;
 
             const totalBruto = vacProp + agProp + indem + heD + heN + asu + dds;
