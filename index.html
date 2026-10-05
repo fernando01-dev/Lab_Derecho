@@ -337,6 +337,120 @@
             font-size: 9px;
             border-radius: 3px;
         }
+
+        /* ===== MODAL DE DESCARGO DE RESPONSABILIDAD ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 18, 38, 0.82);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--color-hueso-tarjeta);
+            padding: 36px 32px 30px;
+            border-radius: 14px;
+            max-width: 520px;
+            width: 92%;
+            box-shadow: 0 20px 50px rgba(10, 18, 38, 0.45);
+            text-align: center;
+            transform: translateY(-24px) scale(0.97);
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            border: 1px solid var(--color-hueso-borde);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1b2a4a 0%, #233876 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            box-shadow: 0 6px 18px rgba(27, 42, 74, 0.28);
+        }
+
+        .modal-icon-wrap i {
+            font-size: 26px;
+            color: #e8bc50;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 14px;
+            color: var(--color-anil-principal);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .modal-content p {
+            font-size: 0.875rem;
+            line-height: 1.65;
+            color: #4b5563;
+            text-align: justify;
+            margin-bottom: 24px;
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            color: #92400e;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+            letter-spacing: 0.03em;
+        }
+
+        .modal-btn {
+            background: linear-gradient(135deg, #1b2a4a 0%, #233876 100%);
+            color: #f7f6f2;
+            border: none;
+            padding: 13px 28px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: box-shadow 0.2s ease, transform 0.15s ease;
+            width: 100%;
+            letter-spacing: 0.01em;
+        }
+
+        .modal-btn:hover {
+            box-shadow: 0 8px 20px rgba(27, 42, 74, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .modal-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ===== FIN MODAL ===== */
     </style>
 </head>
 
@@ -364,6 +478,32 @@
             </div>
         </div>
     </header>
+
+    <!-- ===== MODAL DE DESCARGO DE RESPONSABILIDAD ACADÉMICO ===== -->
+    <div id="disclaimerModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
+        <div class="modal-content">
+            <div class="modal-icon-wrap">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+            <div class="modal-badge">
+                <i class="fas fa-graduation-cap"></i> USO ACADÉMICO
+            </div>
+            <h2 id="disclaimerTitle">Aviso Legal y Académico</h2>
+            <p>
+                La presente aplicación ha sido desarrollada exclusivamente con <strong>fines académicos y de
+                    investigación</strong>. Los cálculos, datos o información presentada no constituyen asesoría
+                legal oficial ni sustituyen un dictamen jurídico profesional.
+                <br><br>
+                Se recomienda encarecidamente a los usuarios que requieran resolver casos o dudas sobre
+                situaciones laborales reales, <strong>asesorarse en el Ministerio de Trabajo y Previsión
+                    Social de El Salvador</strong> o con un especialista en la materia de su localidad.
+            </p>
+            <button id="acceptDisclaimerBtn" class="modal-btn">
+                <i class="fas fa-check-circle mr-2"></i>He leído y acepto
+            </button>
+        </div>
+    </div>
+    <!-- ===== FIN MODAL ===== -->
 
     <main class="container mx-auto px-4 py-8">
 
@@ -520,7 +660,8 @@
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-xs font-semibold text-gray-700 mb-1">
-                                <i class="fas fa-coins text-[#233876] mr-1"></i> Sector / Salario Mínimo Legal Vigente
+                                <i class="fas fa-coins text-[#233876] mr-1"></i> Referencia de Sector / Salario Mínimo
+                                Legal Vigente
                                 (USD)
                             </label>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -538,7 +679,8 @@
                                     title="Base mínima legal de referencia">
                             </div>
                             <p class="text-[11px] text-gray-500 mt-1">
-                                <i class="fas fa-balance-scale mr-1 text-[#233876]"></i>Tope Art. 58 CT (4× SML para
+                                <i class="fas fa-balance-scale mr-1 text-[#233876]"></i>Tope Art. 58 CT (4× Salario
+                                Mínimo Legal Vigente para
                                 despido): <strong id="lblTopeLegal" class="text-[#1b2a4a]">$1,635.20</strong>
                             </p>
                         </div>
@@ -1493,7 +1635,8 @@
                             <li>• <strong>Exención Legal Absoluta de Indemnización y Aguinaldo:</strong> Conforme al
                                 Código de Trabajo y a la Ley de Impuesto sobre la Renta (Arts. 4 y 29), la
                                 <strong>indemnización por despido injustificado</strong> y el <strong>aguinaldo
-                                    legal</strong> están 100% exentos de retención de renta, ISSS y AFP.</li>
+                                    legal</strong> están 100% exentos de retención de renta, ISSS y AFP.
+                            </li>
                             <li>• <strong>Monto Líquido a Pagar:</strong> Total Devengado Bruto menos la suma total de
                                 deducciones de ley retenidas.</li>
                         </ul>
@@ -3035,6 +3178,22 @@
         actualizarValidacionPreaviso();
         actualizarRegimenVacaciones();
         actualizarTopeLegal();
+
+        // ===== LÓGICA DEL MODAL DE DESCARGO DE RESPONSABILIDAD =====
+        (function () {
+            const modal = document.getElementById('disclaimerModal');
+            const acceptBtn = document.getElementById('acceptDisclaimerBtn');
+
+            // Se muestra siempre al abrir la página
+            requestAnimationFrame(function () {
+                modal.classList.add('active');
+            });
+
+            acceptBtn.addEventListener('click', function () {
+                modal.classList.remove('active');
+            });
+        })();
+        // ===== FIN MODAL =====
     </script>
 </body>
 
